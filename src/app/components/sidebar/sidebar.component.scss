@@ -1,0 +1,118 @@
+@import "../../../styles/variables.scss";
+
+button {
+    text-align: left;
+}
+
+mat-icon {
+    margin-right: 8px;
+    margin-left: 16px;
+}
+
+
+.tfleet {
+    background-color: $tfleet-color;
+}
+
+.alelo {
+    background-color: $alelo-color;
+}
+
+.vale {
+    background-color: $vale-color;
+}
+
+
+.csn {
+    background-color: #1E88E5;
+}
+
+.petropolis {
+    background-color: #1E88E5;
+}
+
+.tfleetLogo {
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../assets/img/tfleet_logo_branca.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.csnLogo {
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../assets/img/tfleet_logo_branca.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.valeLogo {
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../assets/img/tfleet_logo_branca.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.petropolisLogo {
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../assets/img/tfleet_logo_branca.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.aleloLogo {
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../assets/img/logo-alelo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+mat-button:hover {
+    background-color: transparent;
+}
+
+.sidebar {
+    width: 100%;
+    height: 100%;
+    background: rgb(215, 204, 200);
+    background: linear-gradient(137deg, rgba(215, 204, 200, 0.5) 7%, rgba(215, 204, 200, 0.4) 58%, rgba(215, 204, 200, 0.2) 96%);
+}
+
+::ng-deep mat-list-option {
+  // remove o marcador lateral
+  .mat-pseudo-checkbox {
+    display: none !important;
+  }
+}
+
+::ng-deep button[mat-button] {
+  // remove borda e fundo do botão
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  outline: none !important;
+  padding: 0; // opcional, se quiser reduzir espaçamento
+
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    mat-icon {
+    height: 20px;
+    }
+    span {
+    margin-left: 8px; /* Ajuste conforme necessário */
+    }
+
+
+}

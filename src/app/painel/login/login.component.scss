@@ -1,0 +1,95 @@
+@import "../../../styles/variables.scss";
+
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    .login {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+        width: 340px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+        .logo {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background-image: url('../../../assets/img/tfleet-logo.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+        }
+
+        mat-form-field {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 1rem;
+        }
+    }
+}
+
+
+// Estado inicial (quando grupo é vazio ou menor que 5 caracteres)
+.contentInit {
+    height: 100vh;
+    width: 100vw;
+    background-color: lightskyblue;
+    overflow: hidden;
+}
+
+// Grupo TFleet
+.contentTfleet {
+    background-color: $tfleet-color;
+    .login {
+        border-top: 4px solid $tfleet-color;
+    }
+    button {
+        background-color: $tfleet-color;
+        color: #fff;
+    }
+}
+
+// Grupo Alelo
+.contentAlelo {
+    background-color: $alelo-color;
+    .login {
+        border-top: 4px solid $alelo-color;
+    }
+    button {
+        background-color: $alelo-color;
+        color: #fff;
+    }
+}
+
+// Grupo Vale
+.contentVale {
+   background-color: $vale-color;
+    .login {
+        border-top: 4px solid $vale-color;
+    }
+    button {
+        background-color: $vale-color;
+        color: #fff;
+    }
+}
+
+// Grupo inválido (quando não corresponde a nenhum dos anteriores)
+.contentNull {
+    background-color: $default-color;
+    .login {
+        border-top: 4px solid $default-color;
+    }
+    button {
+        background-color: $default-color;
+        color: #fff;
+    }
+}

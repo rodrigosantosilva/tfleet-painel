@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.dialog-transparent
+{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+mat-dialog-container
+{    
+    margin: 0px !important;
+    padding: 0px !important; 
+}
+
+.error-snack-bar
+{
+    background-color: brown;
+    color: white;
+    text-align: center;
+    align-items: center;
+}
+
+.success-snack-bar
+{
+    background-color: darkgreen;
+    color: white;
+    text-align: center;
+    align-items: center;
+    width: min-content;
+}
+
+.table-header {
+    color: rgb(51, 51, 109) !important;
+    background-color: lightgray !important;
+    font-size: 1rem;
+    text-align: center;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
+.table-row {
+    font-size: 1rem;
+    text-align: center;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+/* You can add global styles to this file, and also import other style files */

@@ -1,0 +1,77 @@
+@import "../../../styles/variables.scss";
+
+mat-toolbar {
+  padding-left: 0%;
+}
+
+.spacer {
+  flex: 1;
+}
+
+mat-icon {
+  color: white;
+}
+
+.tfleet {
+  background-color: $tfleet-color;
+}
+
+.tfleetIcon {
+  color: $tfleet-color;
+}
+
+
+.alelo {
+  background-color: $alelo-color;
+}
+
+.aleloIcon {
+  color: $alelo-color;
+}
+
+
+.vale {
+  background-color: $vale-color;
+}
+
+.valeIcon {
+  color: $vale-color;
+}
+
+
+@media (max-width: 768px) {
+  .welcome {
+    color: white;
+
+  }
+}
+
+@media (min-width: 768px) {
+  .welcome {
+    color: white;
+    margin-left: 32px;
+  }
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.5em;
+}
+
+mat-form-field {
+  width: 50%;
+  font-size: 0.75em;
+  margin-left: 8px;
+}
+
+.empresa-mobile {
+  width: 40%;
+  font-size: 1em;
+  margin-left: 8px;
+  margin-right: 16px;
+  color: white !important;
+}

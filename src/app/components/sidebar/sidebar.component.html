@@ -1,0 +1,74 @@
+<div class="sidebar">
+    <mat-toolbar [ngClass]="[class]">
+            <div [ngClass]="[class + 'Logo']"></div>
+    </mat-toolbar>
+    <mat-selection-list [multiple]="false" hideSingleSelectionIndicator>
+        <mat-list-option [routerLink]="[ '/painel/home' ]">
+            <button mat-button>
+                <mat-icon style="color: #558b2f">house</mat-icon>
+                 <span>Home</span>
+            </button>
+        </mat-list-option>
+        <!-- <mat-list-option [routerLink]="[ '/painel/atendimento' ]">
+            <button mat-button>
+                <mat-icon style="color: #558B2F">phone</mat-icon>
+                 <span>Atendimento</span>
+            </button>
+        </mat-list-option> -->
+        <mat-list-option [routerLink]="[ '/painel/servicos' ]">
+            <button mat-button>
+                <mat-icon style="color: #0277BD">construction</mat-icon>
+                 <span>Serviços</span>
+            </button>
+        </mat-list-option>
+        <mat-list-option [routerLink]="[ '/painel/frota' ]">
+            <button mat-button>
+                <mat-icon style="color: #C62828">directions_car</mat-icon>
+                 <span>Frota</span>
+            </button>
+        </mat-list-option>
+        <mat-list-option [routerLink]="[ '/painel/infracoes' ]">
+            <button mat-button>
+                <mat-icon style="color: #558B2F">traffic</mat-icon>
+                 <span>Infrações</span>
+            </button>
+        </mat-list-option>
+        <mat-list-option [routerLink]="[ '/painel/custo' ]">
+            <button mat-button>
+                <mat-icon style="color: #039be5">monetization_on</mat-icon>
+                 <span>Custo Geral</span>
+            </button>
+        </mat-list-option>
+        <mat-list-option [routerLink]="[ '/painel/telemetria' ]" *ngIf= "class !== 'alelo'" >
+            <button mat-button>
+                <mat-icon style="color: #050e04">place</mat-icon>
+                 <span>Telemetria</span>
+            </button>
+        </mat-list-option>
+        <mat-list-option [routerLink]="[ '/painel/locacoes' ]" *ngIf= "class === 'tfleet'" >
+            <button mat-button>
+                <mat-icon style="color: #3e11a5">car_rental</mat-icon>
+                 <span>Locações</span>
+            </button>
+        </mat-list-option>
+        <mat-list-option [routerLink]="[ '/painel/abastecimento' ]" *ngIf= "class === 'inativo'">
+            <button mat-button>
+                <mat-icon style="color: #1800f1">local_gas_station</mat-icon>
+                 <span>Abastecimentos</span>
+            </button>
+        </mat-list-option>
+        <mat-list-option [routerLink]="[ '/painel/rapido' ]">
+            <button mat-button>
+                <mat-icon style="color: #C62828">table_chart</mat-icon>
+                 <span>Relatório</span>
+            </button>
+        </mat-list-option>
+        <!--mat-list-option [routerLink]="[ '/painel/icExpress' ]" *ngIf="class === 'inativo'" >
+            <button mat-button>
+                <mat-icon style="color: #f1a500">analytics</mat-icon>
+                 <span>IC Express</span>
+            </button>
+        </mat-list-option-->
+      </mat-selection-list>
+</div>
+

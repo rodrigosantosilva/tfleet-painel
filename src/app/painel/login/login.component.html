@@ -1,0 +1,38 @@
+<div [ngClass]="grupoClasses"></div>
+<div class="background">
+    <div class="login mat-elevation-z8">
+        <div class="logo">
+        </div>
+        <form (ngSubmit)="onLogin()" [formGroup]="loginForm">
+            <mat-form-field>
+                <mat-label>Grupo de Acesso</mat-label>
+                <input matInput formControlName="grupo" placeholder="Ex. Tfleet" autofocus>
+                <mat-error *ngIf="loginForm.get('grupo')?.hasError('required')">
+                    Por favor, digite o grupo de Acesso.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Usuário</mat-label>
+                <input matInput formControlName="usuario" placeholder="Ex. nome.sobrenome">
+                <mat-error *ngIf="loginForm.get('usuario')?.hasError('required')">
+                    Por favor, insira um usuário válido.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Senha</mat-label>
+                <input type="password" matInput formControlName="senha" placeholder="********">
+                <mat-error *ngIf="loginForm.get('senha')?.hasError('required')">
+                    Por favor, insira uma senha.
+                </mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" [disabled]="loginForm.invalid || logging">
+                <span *ngIf="!logging">Entrar</span>
+                <span *ngIf="logging">Entrando...</span>
+            </button>
+        </form>
+
+    </div>
+</div>

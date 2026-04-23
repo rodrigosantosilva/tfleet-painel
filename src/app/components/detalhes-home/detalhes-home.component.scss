@@ -1,0 +1,49 @@
+mat-card-header {
+  width: 100%;
+}
+
+.avatar mat-icon {
+  font-size: 40px;
+}
+
+.close {
+  cursor: pointer;
+  float: right;
+  margin-left: auto;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-card {
+  max-height: 90vh;
+}
+
+
+mat-form-field{
+  width: 100%;
+}
+
+.filter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: white;
+  width: 50vw;
+  height: wrap;
+  padding: 32px;
+  border-radius: 5%;
+}
+
+
+table, th {
+  width: auto;
+  text-align: center;
+  margin: auto;
+}
+
+.numero {
+  text-align: right !important;
+}

@@ -1,0 +1,11 @@
+<!--
+<pt-sidebar class="mat-elevation-z8" *ngIf="!mobile"></pt-sidebar>
+<pt-toolbar></pt-toolbar>    
+<pt-content></pt-content>    
+<pt-footer></pt-footer>
+-->
+<app-toolbar class="mat-elevation-z8" *ngIf="!mobile"></app-toolbar>
+<app-sidebar>
+    <ng-content></ng-content>
+</app-sidebar>
+<app-footer></app-footer>   
