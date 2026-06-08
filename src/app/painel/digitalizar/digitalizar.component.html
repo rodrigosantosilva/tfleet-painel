@@ -1,0 +1,35 @@
+<app-painel>
+    <div class="painel">
+
+        <div style="padding: 20px; font-family: sans-serif; max-width: 600px;">
+            <h2>Leitor de Imagem com Serviço OCR</h2>
+
+            <input type="file" accept="image/png, image/jpeg, image/jpg, image/webp" (change)="onFileSelected($event)"
+                [disabled]="carregando()" />
+
+            @if (carregando()) {
+            <div style="margin-top: 15px; color: #0056b3;">
+                <strong>Status:</strong> Processando imagem, por favor aguarde...
+            </div>
+            }
+
+            @if (imagemPreview()) {
+            <div style="margin-top: 15px;">
+                <h4>Imagem selecionada:</h4>
+                <img [src]="imagemPreview()" alt="Preview"
+                    style="max-width: 100%; max-height: 200px; border: 1px solid #ccc; border-radius: 4px;" />
+            </div>
+            }
+
+            @if (textoExtraido()) {
+            <div style="margin-top: 20px;">
+                <h3>Texto Identificado pelo Serviço:</h3>
+                <pre
+                    style="background: #f8f9fa; padding: 15px; border: 1px solid #e9ecef; border-radius: 5px; white-space: pre-wrap; font-family: monospace;">
+        {{ textoExtraido() }}
+      </pre>
+            </div>
+            }
+        </div>
+    </div>
+</app-painel>

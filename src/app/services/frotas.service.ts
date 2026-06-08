@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
@@ -55,7 +56,7 @@ export class FrotasService {
                                      );                                   
     return this.http.post<{ result: Marca[] }>(BACKEND_URL + '/consulta', {
       sql, db: this.database
-    });
+    }).pipe(map(response => response.result));
   }
 
   // ano
@@ -107,7 +108,7 @@ export class FrotasService {
       BACKEND_URL + '/consulta', {
         sql, db: this.database
       }
-    );
+    ).pipe(map(response => response.result));
   }
 
   // unidade
@@ -132,7 +133,7 @@ export class FrotasService {
                                         );
     return this.http.post<{ result: Unidade[] }>(BACKEND_URL + '/consulta', {
       sql, db: this.database
-    });
+    }).pipe(map(response => response.result));
   }
 
   // departamento
@@ -158,7 +159,7 @@ export class FrotasService {
     return this.http.post<{ result: Departamento[] }>(
       BACKEND_URL + '/consulta', {
         sql, db: this.database
-      });
+      }).pipe(map(response => response.result));
   }
 
   // grupo
@@ -184,7 +185,7 @@ export class FrotasService {
     return this.http.post<{ result: GrupoGerencial[] }>(
       BACKEND_URL + '/consulta', {
         sql, db: this.database
-      });
+      }).pipe(map(response => response.result));
   }
   // situacao
   generateSituacao(): Observable<any> {
@@ -208,7 +209,7 @@ export class FrotasService {
                                         );                                
     return this.http.post<{ result: Situacao[] }>(BACKEND_URL + '/consulta', {
       sql, db: this.database
-    });
+    }).pipe(map(response => response.result));
   }
 
   // faixakm
@@ -233,7 +234,7 @@ export class FrotasService {
                                         );
     return this.http.post<{ result: Faixakms[] }>(BACKEND_URL + '/consulta', {
       sql, db: this.database
-    });
+    }).pipe(map(response => response.result));
   }
   //tabelakm
   generateTabelaKM(): Observable<any> {
@@ -258,7 +259,7 @@ export class FrotasService {
 
     return this.http.post<{ result: Tabelakms[] }>(BACKEND_URL + '/consulta', {
       sql, db: this.database
-    });
+    }).pipe(map(response => response.result));
   }
 
   generatAll(): Observable<any> {
@@ -280,17 +281,17 @@ export class FrotasService {
                                     this.crypto.decrypt(localStorage.getItem('locacaoN')!), 
                                     this.crypto.decrypt(localStorage.getItem('rastreamentoN')!)   
                                     );                        
-    return this.http.post<{ result: Status[] }>(BACKEND_URL + '/consulta', {sql, db: this.database});
+    return this.http.post<{ result: Status[] }>(BACKEND_URL + '/consulta', {sql, db: this.database}).pipe(map(response => response.result));
   }
 
   getLabels(): Observable<any> {
     const sql = this.sqlList.labelsSQL();
-    return this.http.post<{ result: string[] }>(BACKEND_URL + '/consulta', {sql, db: this.database});
+    return this.http.post<{ result: string[] }>(BACKEND_URL + '/consulta', {sql, db: this.database}).pipe(map(response => response.result));
   }
 
   getLabelsR(): Observable<any> {
     const sql = this.sqlList.labelsSQLR();
-    return this.http.post<{ result: string[] }>(BACKEND_URL + '/consulta', {sql, db: this.database});
+    return this.http.post<{ result: string[] }>(BACKEND_URL + '/consulta', {sql, db: this.database}).pipe(map(response => response.result));
   }
 
   registerVehicle(vehicle: Veiculo) {  

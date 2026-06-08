@@ -71,7 +71,9 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
     this.timer = true;
     this.token = this.loginService.getToken();
-    this.getUsuarioLogado();   
+    this.getUsuarioLogado();  
+    this.class = this.usuarioLogado.grupoAcesso!.toLocaleLowerCase();
+ 
     if (this.usuarioLogado.nome  === 'RODRIGO SANTOS SILVA') {
       this.class = this.usuarioLogado.grupoAcesso!.toLocaleLowerCase();
     }

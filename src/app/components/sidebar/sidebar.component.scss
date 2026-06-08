@@ -1,118 +1,57 @@
-@import "../../../styles/variables.scss";
-
-button {
-    text-align: left;
-}
-
-mat-icon {
-    margin-right: 8px;
-    margin-left: 16px;
-}
+@use  "../../../styles/variables.scss" as var;
 
 
-.tfleet {
-    background-color: $tfleet-color;
-}
-
-.alelo {
-    background-color: $alelo-color;
-}
-
-.vale {
-    background-color: $vale-color;
-}
 
 
-.csn {
-    background-color: #1E88E5;
-}
 
-.petropolis {
-    background-color: #1E88E5;
-}
-
-.tfleetLogo {
-    width: 100%;
-    height: 100%;
-    background-image: url("../../../assets/img/tfleet_logo_branca.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: auto;
-}
-
-.csnLogo {
-    width: 100%;
-    height: 100%;
-    background-image: url("../../../assets/img/tfleet_logo_branca.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: auto;
-}
-
-.valeLogo {
-    width: 100%;
-    height: 100%;
-    background-image: url("../../../assets/img/tfleet_logo_branca.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: auto;
-}
-
-.petropolisLogo {
-    width: 100%;
-    height: 100%;
-    background-image: url("../../../assets/img/tfleet_logo_branca.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: auto;
-}
-
-.aleloLogo {
-    width: 100%;
-    height: 100%;
-    background-image: url("../../../assets/img/logo-alelo.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-
-mat-button:hover {
-    background-color: transparent;
+.sidebar-container {
+  display: flex;
+  height: 85%;
 }
 
 .sidebar {
-    width: 100%;
-    height: 100%;
-    background: rgb(215, 204, 200);
-    background: linear-gradient(137deg, rgba(215, 204, 200, 0.5) 7%, rgba(215, 204, 200, 0.4) 58%, rgba(215, 204, 200, 0.2) 96%);
+  width: 13%; /* sidebar ocupa 10% */
+   background: rgb(215,204,200);
+    background: linear-gradient(137deg, rgba(215,204,200,0.5) 7%, rgba(215,204,200,0.4) 58%, rgba(215,204,200,0.2) 96%);
+
 }
 
-::ng-deep mat-list-option {
-  // remove o marcador lateral
-  .mat-pseudo-checkbox {
-    display: none !important;
+.content {
+  width: 85%; /* conteúdo ocupa 90% */
+  padding: 16px; /* espaçamento interno opcional */
+}
+
+
+mat-sidenav-container {
+  height: 85%;
+  width: 100%;
+  mat-sidenav {
+    gap: 0px; /* Reduz o espaçamento entre os itens */
+    mat-selection-list {
+      gap: 0px; /* Reduz o espaçamento entre os itens */
+      mat-list-option {
+        padding: 4px 8px; /* Ajuste conforme necessário */
+        margin: 2px 0;
+        button {
+          width: 100%;
+          font-size: 16px;
+          font-weight: 500;
+          text-align: left;
+
+          border: none;
+          gap: 8px;
+          background: transparent;
+          padding: 20px 24px;
+          cursor: pointer;
+
+          mat-icon {
+            height: 20px;
+          }
+          span {
+            margin-left: 8px; /* Ajuste conforme necessário */
+          }
+        }
+      }
+    }
   }
-}
-
-::ng-deep button[mat-button] {
-  // remove borda e fundo do botão
-  border: none !important;
-  box-shadow: none !important;
-  background: transparent !important;
-  outline: none !important;
-  padding: 0; // opcional, se quiser reduzir espaçamento
-
-    width: 100%;
-    font-size: 16px;
-    font-weight: 500;
-    text-align: left;
-    cursor: pointer;
-    mat-icon {
-    height: 20px;
-    }
-    span {
-    margin-left: 8px; /* Ajuste conforme necessário */
-    }
-
-
 }

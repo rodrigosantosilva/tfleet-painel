@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink  } from '@angular/router';
@@ -10,7 +11,7 @@ import { Login } from '../../types/login-response.type';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [ MatToolbarModule, MatListModule,MatIconModule, RouterLink, CommonModule 
+  imports: [ MatToolbarModule, MatSidenavModule, MatListModule,MatIconModule, RouterLink, CommonModule 
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
@@ -58,4 +59,9 @@ export class SidebarComponent implements OnInit {
     this.usuarioLogado.urlweb = JSON.parse(atob(this.token!.split('.')[1])).urlweb;
     this.usuarioLogado.baseweb = JSON.parse(atob(this.token!.split('.')[1])).baseweb;
   }
+
+  digitalizar(){
+    this.router.navigate(["digitalizar"]) 
+  }
+
 }

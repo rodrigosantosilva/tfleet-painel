@@ -1,0 +1,445 @@
+@media (min-width: 768px){
+    .home {
+        padding: 32px;
+        print-color-adjust: exact !important;
+    }
+}
+
+
+@media (max-width: 768px){
+    .home {
+        padding: 8px;
+        padding-top: 16px;
+        width: 95%;
+        print-color-adjust: exact !important;
+    }
+}
+
+.section1 {
+    width: 100%;
+    margin: 0px;
+    padding-top: 36px;
+    padding-bottom: 36px;
+}
+
+.card {
+    margin-right: 24px;
+    margin-left: 8px;
+    margin-bottom: 16px;
+    print-color-adjust: exact;
+}
+
+.icon {
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    min-width: 100%;
+    position: relative;
+}
+
+.card-icon {
+    font-size: 72px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-150%,-150%);
+}
+
+span {
+    color: white;
+    margin-left: 8px;
+}
+
+.number {
+    font-size: 32px;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.content {
+    padding: 8px;
+}
+
+mat-card{
+    width: 100%;
+    height: 400px;
+    margin: 8px;
+    background-image: radial-gradient( circle 1224px at 10.6% 8.8%,  rgba(255,255,255,1) 0%, rgba(153,202,251,1) 100.2% );
+}
+
+google-chart {
+    min-width: 100%;
+    min-height: 300px;
+    /* border: 1px solid red; */
+}
+
+.big-chart{
+    width: 100%;
+    height: 400px;
+}
+
+mat-icon {
+    font-size: 28px;
+}
+
+hr {
+    height: 1px;
+    background-color: lightgray;
+    border: none;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.more-icon {
+    cursor: pointer;
+}
+
+.fab {
+    position: fixed;
+    right: 16px;
+    bottom: 32px;
+}
+
+.fab mat-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-55%,-55%);
+    color: white;
+}
+
+.loading {
+    background-image: url('/img/home.gif');
+    background-size: 15%;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-width: 84vw;
+    min-height: 80vh;
+    position: relative;
+}
+
+.dados{
+    width: 80%;
+    text-align: center;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.card-atendimento {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 16px;
+}
+
+mat-card-content {
+    width: 100%;
+}
+
+.chart {
+    width: 100%;
+    margin-right: 8px;
+}
+
+mat-progress-bar {
+    width: 40%;
+    height: 4px;
+    margin: auto;
+}
+
+.full {
+    width: 100%;
+    height: 100%;
+  }
+
+  .full:fullscreen {
+    zoom: 125%;
+  }
+
+  .not-found {
+    height: 200px;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    color: red;
+    position: relative;
+  }
+
+  .not-found .dado {
+    width: 100%;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+  }
+
+
+  footer {
+    font-size: 9px;
+    color: #f00;
+    text-align: center;
+  }
+
+  @page {
+    size: A4;
+    margin: 29mm 17mm 17mm 17mm;
+  }
+
+  .tfleetlogo {
+    width: 20vh;
+    height: 10vh;
+    background-image: url("/img/tfleet-logo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    float: right;
+    print-color-adjust: exact;
+    display: none;
+    position: fixed;
+  }
+
+
+  @media print {
+
+    @media (min-width: 768px){
+      .home {
+          padding: 32px;
+          padding-top: 500px;
+          print-color-adjust: exact;
+      }
+  }
+
+
+  @media (max-width: 768px){
+      .home {
+          padding: 8px;
+          padding-top: 500px;
+          width: 95%;
+          print-color-adjust: exact;
+      }
+  }
+
+  .section1 {
+      width: 100%;
+      margin: 0px;
+      padding-top: 36px;
+      padding-bottom: 36px;
+  }
+
+  .card {
+      margin-right: 24px;
+      margin-left: 8px;
+      margin-bottom: 16px;
+      print-color-adjust: exact;
+  }
+
+  .icon {
+      height: 100%;
+      min-height: 100%;
+      width: 100%;
+      min-width: 100%;
+      position: relative;
+  }
+
+  .card-icon {
+      font-size: 72px;
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-150%,-150%);
+  }
+
+  span {
+      color: white;
+      margin-left: 8px;
+  }
+
+  .number {
+      font-size: 32px;
+      margin-top: 8px;
+      margin-bottom: 4px;
+  }
+
+  .content {
+      padding: 8px;
+  }
+
+  mat-card{
+      width: 100%;
+      height: 400px;
+      margin: 8px;
+      background-image: radial-gradient( circle 1224px at 10.6% 8.8%,  rgba(255,255,255,1) 0%, rgba(153,202,251,1) 100.2% );
+  }
+
+  google-chart {
+      min-width: 100%;
+      min-height: 300px;
+      /* border: 1px solid red; */
+  }
+
+  .big-chart{
+      width: 100%;
+      height: 400px;
+  }
+
+  mat-icon {
+      font-size: 28px;
+  }
+
+  hr {
+      height: 1px;
+      background-color: lightgray;
+      border: none;
+  }
+
+  .spacer {
+      flex: 1 1 auto;
+  }
+
+  .more-icon {
+      cursor: pointer;
+  }
+
+  .fab {
+      position: fixed;
+      right: 16px;
+      bottom: 32px;
+  }
+
+  .fab mat-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-55%,-55%);
+      color: white;
+  }
+
+  .loading {
+      background-image: url('/img/home.gif');
+      background-size: 15%;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-width: 84vw;
+      min-height: 80vh;
+      position: relative;
+  }
+
+  .dados{
+      width: 80%;
+      text-align: center;
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+  }
+
+  .card-atendimento {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 16px;
+  }
+
+  mat-card-content {
+      width: 100%;
+  }
+
+  .chart {
+      width: 100%;
+      margin-right: 8px;
+  }
+
+  mat-progress-bar {
+      width: 40%;
+      height: 4px;
+      margin: auto;
+  }
+
+  .full {
+      width: 95%;
+      height: 100%;
+    }
+
+    .full:fullscreen {
+      zoom: 125%;
+    }
+
+    .not-found {
+      height: 200px;
+      width: 100%;
+      text-align: center;
+      font-size: 2rem;
+      color: red;
+      position: relative;
+    }
+
+    .not-found .dado {
+      width: 100%;
+      height: 100px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+    }
+
+    .dont-print {
+      display: none;  /* hide whole page */
+    }
+
+    .header {
+      margin-bottom: 2rem;
+      background-color: #2196f3;
+      print-color-adjust: exact;
+      display: block;
+      position: fixed;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+    }
+
+    .content-block, p {
+      page-break-inside: avoid;
+      margin-top: 20vh;
+    }
+
+    html, body {
+      width: 210mm;
+      height: 297mm;
+    }
+
+    .tfleetlogo {
+      width: 20vh;
+      height: 10vh;
+      background-image: url("/img/tfleet-logo.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      float: right;
+      print-color-adjust: exact;
+      display: block;
+      position: fixed;
+      top: 0;
+      right: 0;
+    }
+
+    mat-card, div {
+      box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
+
+    mat-card {
+      border: 1px solid gray;
+      print-color-adjust: exact;
+    }
+
+
+  }
+

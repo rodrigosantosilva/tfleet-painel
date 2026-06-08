@@ -36,8 +36,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     let origin = this.route.snapshot.queryParams['origin'];
-    if (origin === "central")
-      this.loginExternal();
+    if (origin === "central")  this.loginExternal();
     this.loginForm.get('grupo')?.setValue("TFLEET");
   }
 

@@ -1,69 +1,34 @@
 <mat-toolbar [ngClass]="class">
+  <div [ngClass]="class + 'Logo'"> </div>
   <button mat-button *ngIf="mobile" (click)="openMenu()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span class="welcome" *ngIf="!mobile">Olá, {{ primeiroNome }}! Você está visualizando a empresa
-    <!-- empresas -->
-    <mat-form-field>
-      <mat-select [formControl]="empresasForm" multiple (closed)="mudaEmpresa()">
-        <mat-select-trigger>
-          {{empresasForm.value? retornaNome(empresasForm.value[0]) : retornaNome(empresasForm.value)}}
-          <span *ngIf="empresasForm.value?.length > 1" class="example-additional-selection">
-            (+{{empresasForm.value.length - 1}} {{empresasForm.value?.length === 2 ? 'outros' : 'outros'}})
-          </span>
-        </mat-select-trigger>
-        <mat-option (click)="selecionarTudo()" [value]="numeroZero">Selecionar tudo</mat-option>
-        <hr>
-        <mat-option *ngFor="let empresa of listaEmpresa  | slice: 1" [value]="empresa[1]" (click)="deselectAll()">
-          {{ empresa[0] }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <!-- fim empresas -->
-  </span>
+  <span class="title"> Olá, {{ primeiroNome }}! </span>
   <span class="spacer"></span>
-  <span> ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </span>
-  <span> ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </span>
-  <span> ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </span>
-  <span> ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </span>
-  <span> ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </span>
-  <span> ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ </span>
 
-  <button mat-button (click)="abrirFiltros()">
-    <mat-icon>search</mat-icon>
-  </button>
   <button mat-button [matMenuTriggerFor]="apps">
     <mat-icon>apps</mat-icon>
   </button>
+
   <mat-menu #apps="matMenu">
-    <button mat-menu-item>
-      <a target="_blank" (click)="toIC()">
-        <mat-icon [ngClass]="class + 'Icon'">table_chart</mat-icon>Intelligence
-        Center
-      </a>
+    <button mat-menu-item (click)="toIC()">
+      <mat-icon [ngClass]="class + 'Icon'">table_chart</mat-icon>
+      Intelligence Center
     </button>
-    <button mat-menu-item>
-      <a target="_blank" (click)="toSC()">
-        <mat-icon [ngClass]="[class + 'Icon']">headset_mic</mat-icon>Service
-        Center
-      </a>
+
+    <button mat-menu-item (click)="toSC()">
+      <mat-icon [ngClass]="class + 'Icon'">headset_mic</mat-icon>
+      Service Center
     </button>
-    <button mat-menu-item>
-      <a target="_blank" (click)="toWeb()">
-        <mat-icon [ngClass]="class + 'Icon'">public</mat-icon>Tfleet Web
-      </a>
+
+    <button mat-menu-item (click)="toWeb()">
+      <mat-icon [ngClass]="class + 'Icon'">public</mat-icon>
+      Tfleet Web
     </button>
   </mat-menu>
-  <button mat-button [matMenuTriggerFor]="config" style="margin-right: 32px;">
-    <mat-icon>portrait</mat-icon>
+
+  <button mat-icon-button (click)="logOff()">
+    <mat-icon>logout</mat-icon>
   </button>
-  <mat-menu #config="matMenu">
-    <button mat-menu-item (click)="abrirInforma()">
-      <mat-icon [ngClass]="class + 'Icon'">person</mat-icon>Suas Informações
-    </button>
-    <mat-divider></mat-divider>
-    <button mat-menu-item (click)="logOff()">
-      <mat-icon [ngClass]="class + 'Icon'">exit_to_app</mat-icon>Sair
-    </button>
-  </mat-menu>
+
 </mat-toolbar>

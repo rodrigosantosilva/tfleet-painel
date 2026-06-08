@@ -1,4 +1,4 @@
-@import "../../../styles/variables.scss";
+@use "../../../styles/variables.scss" as var;
 
 .background {
     display: flex;
@@ -48,48 +48,48 @@
 
 // Grupo TFleet
 .contentTfleet {
-    background-color: $tfleet-color;
+    background-color: var.$tfleet-color;
     .login {
-        border-top: 4px solid $tfleet-color;
+        border-top: 4px solid var.$tfleet-color;
     }
     button {
-        background-color: $tfleet-color;
+        background-color: var.$tfleet-color;
         color: #fff;
     }
 }
 
 // Grupo Alelo
 .contentAlelo {
-    background-color: $alelo-color;
+    background-color: var.$alelo-color;
     .login {
-        border-top: 4px solid $alelo-color;
+        border-top: 4px solid var.$alelo-color;
     }
     button {
-        background-color: $alelo-color;
+        background-color: var.$alelo-color;
         color: #fff;
     }
 }
 
 // Grupo Vale
 .contentVale {
-   background-color: $vale-color;
+   background-color: var.$vale-color;
     .login {
-        border-top: 4px solid $vale-color;
+        border-top: 4px solid var.$vale-color;
     }
     button {
-        background-color: $vale-color;
+        background-color: var.$vale-color;
         color: #fff;
     }
 }
 
 // Grupo inválido (quando não corresponde a nenhum dos anteriores)
 .contentNull {
-    background-color: $default-color;
+    background-color: var.$default-color;
     .login {
-        border-top: 4px solid $default-color;
+        border-top: 4px solid var.$default-color;
     }
     button {
-        background-color: $default-color;
+        background-color: var.$default-color;
         color: #fff;
     }
 }

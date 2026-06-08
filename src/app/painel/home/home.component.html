@@ -1,1 +1,248 @@
-<p>home works!</p>
+<mat-toolbar>
+</mat-toolbar>
+
+<div class="loading" *ngIf="!ok">
+  <div class="dados">
+    <span style="color: gray; font-size: 1rem;">Carregando dados...</span>
+    <mat-progress-bar mode="determinate" [value]="progress" color="primary">Carregando dados...</mat-progress-bar>
+  </div>
+</div>
+
+<div class="home" *ngIf="ok" id="print-section">
+  <div class="tfleetlogo" style="print-color-adjust: exact">
+    <img src="../../../../assets/img/tfleet-logo.png" alt="logoTfleet" style="height: 100%; width: 100%;">
+  </div>
+
+  <h1>
+    <mat-icon style="color: #558b2f; margin-right: 16px; print-color-adjust: exact;">home</mat-icon>Home
+    <button mat-button style="margin-right: 16px; float: right; cursor: pointer;" class="dont-print"
+      printSectionId="print-section" styleSheetFile="./home.component.css" 
+       ngxPrint><mat-icon>print</mat-icon></button>
+  </h1>
+  <hr>
+
+  <div fxLayout="row" fxLayout.lt-sm="column" class="section1">
+    <div fxLayout="column" fxFlex="25" class="card mat-elevation-z8">
+      <div fxLayout="row" fxLayoutAlign="space-around stretch" style="min-height: 100%;">
+        <div fxLayout="column" fxFlex="35" style="background-color: #558b2f; print-color-adjust: exact;">
+          <div class="icon">
+            <mat-icon class="card-icon">phone_in_talk</mat-icon>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="65" style="background-color: #8bc34a; print-color-adjust: exact;"
+          class="content">
+          <div class="number">
+            <span >{{resumoAtendimento.abertos}}</span>
+          </div>
+          <div>
+            <span>Atendimentos Abertos</span>
+          </div>
+          <div class="number">
+            <span >{{resumoAtendimento.total}}</span>
+          </div>
+          <div>
+            <span>Atendimentos Período</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div fxLayout="column" fxFlex="25" class="card mat-elevation-z8">
+      <div fxLayout="row" fxLayoutAlign="space-around stretch" style="min-height: 100%;">
+        <div fxLayout="column" fxFlex="35" style="background-color: #0277bd; print-color-adjust: exact;">
+          <div class="icon">
+            <mat-icon class="card-icon">build</mat-icon>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="65" style="background-color: #03a9f4; print-color-adjust: exact;"
+          class="content">
+          <div class="number">
+            <span >{{resumoServicos.abertos}}</span>
+          </div>
+          <div>
+            <span>OSs Abertas</span>
+          </div>
+          <div class="number">
+            <span> {{resumoServicos.total}}</span>
+          </div>
+          <div>
+            <span>OSs no Período</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" fxFlex="25" class="card mat-elevation-z8">
+      <div fxLayout="row" fxLayoutAlign="space-around stretch" style="min-height: 100%;">
+        <div fxLayout="column" fxFlex="35" style="background-color: #C62828; print-color-adjust: exact;">
+          <div class="icon">
+            <mat-icon class="card-icon">traffic </mat-icon>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="65" style="background-color: #F44336; print-color-adjust: exact;"
+          class="content">
+          <div class="number">
+            <span >{{ totalMulta }}</span>
+          </div>
+          <div>
+            <span>Infrações</span>
+          </div>
+
+          <div>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section2">
+
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between stretch">
+      <!-- grafico atendimento -->
+      <mat-card class="chart full mat-elevation-z8" fxLayout="column" fxFlex="100" id="graficoAtendimento">
+        <mat-card-header>
+          <div mat-card-avatar class="avatar">
+            <mat-icon class="chart" style="color: #558b2f; print-color-adjust: exact;">phone_in_talk</mat-icon>
+          </div>
+          <mat-card-title>Atendimentos</mat-card-title>
+          <mat-card-subtitle>Status dos Atendimentos Abertos</mat-card-subtitle>
+          <span class="spacer"></span>
+          <mat-icon class="more-icon" [matMenuTriggerFor]="atendimentos">more_vert</mat-icon>
+          <mat-menu #atendimentos="matMenu">
+            <button mat-menu-item (click)="toggleFS('graficoAtendimento')">Abrir em tela cheia</button>
+            <button mat-menu-item (click)="abrirDetalhes('atendimento')">Ver dados em Tabela</button>
+          </mat-menu>
+        </mat-card-header>
+        <mat-card-content>
+          <hr>
+          <!--google-chart [data]="atendimentoChart.data" [type]="atendimentoChart.type"
+            [options]="atendimentoChart.options" [columns]="atendimentoChart.names"
+            *ngIf="atendimentoChart.data.toString() !== 'Total'">
+          </google-chart-->
+          <div class="not-found" *ngIf="atendimentoChart.data.toString() === 'Total'">
+            <div class="dado">
+              {{ notFound }}
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between stretch">
+      <!-- grafico OS -->
+      <mat-card class="chart full mat-elevation-z8" fxLayout="column" fxFlex="48" id="graficoOS">
+        <mat-card-header>
+          <div mat-card-avatar class="avatar">
+            <mat-icon class="chart" style="color: #0277bd; print-color-adjust: exact;">build</mat-icon>
+          </div>
+          <mat-card-title>Ordens de Serviço</mat-card-title>
+          <mat-card-subtitle>Status das OSs Abertas</mat-card-subtitle>
+          <span class="spacer"></span>
+          <mat-icon class="more-icon" [matMenuTriggerFor]="servicos">more_vert</mat-icon>
+          <mat-menu #servicos="matMenu">
+            <button mat-menu-item (click)="toggleFS('graficoOS')">Abrir em tela cheia</button>
+            <button mat-menu-item (click)="abrirDetalhes('os')">Ver dados em Tabela</button>
+          </mat-menu>
+        </mat-card-header>
+        <mat-card-content>
+          <hr>
+          <!--google-chart [data]="servicosChart.data" [type]="servicosChart.type" [options]="servicosChart.options"
+            [columns]="servicosChart.names" *ngIf="servicosChart.data.toString() !== 'Total'"> 1">
+          </google-chart-->
+          <div class="not-found" *ngIf="servicosChart.data.toString() === 'Total'">
+            <div class="dado">
+              {{ notFound }}
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <!-- gráfico Multa -->
+      <mat-card class="chart full mat-elevation-z8" fxLayout="column" fxFlex="48" id="graficoMulta">
+        <mat-card-header>
+          <div mat-card-avatar class="avatar">
+            <mat-icon class="chart" style="color: #C62828; print-color-adjust: exact;">error_outline</mat-icon>
+          </div>
+          <mat-card-title>Multas</mat-card-title>
+          <mat-card-subtitle>Por gravidade</mat-card-subtitle>
+          <span class="spacer"></span>
+          <mat-icon class="more-icon" [matMenuTriggerFor]="multas">more_vert</mat-icon>
+          <mat-menu #multas="matMenu">
+            <button mat-menu-item (click)="toggleFS('graficoMulta')">Abrir em tela cheia</button>
+            <button mat-menu-item (click)="abrirDetalhes('multas')">Ver dados em Tabela</button>
+          </mat-menu>
+        </mat-card-header>
+        <mat-card-content>
+          <hr>
+          <!--google-chart [data]="multaChart.data" [type]="multaChart.type" [options]="multaChart.options"
+            *ngIf="multaChart.data.length > 1">
+          </google-chart-->
+          <div class="not-found" *ngIf="multaChart.data.length <= 1">
+            <div class="dado">
+              {{ notFound }}
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div fxLayout="row" fxLayout.lt-sm="column" class="section1">
+      <div fxLayout="column" fxFlex="25" class="card mat-elevation-z8">
+        <div fxLayout="row">
+          <div fxLayout="column" fxFlex="35" style="background-color: #ef6c00; print-color-adjust: exact;">
+            <div class="icon">
+              <mat-icon class="card-icon">directions_car</mat-icon>
+            </div>
+          </div>
+          <div fxLayout="column" fxFlex="65" style="background-color: #ff9800; print-color-adjust: exact;"
+            class="content">
+            <div class="number">
+              <span>{{frotaAtiva}}</span>
+            </div>
+            <div>
+              <span>Veículos ativos</span>
+            </div>
+            <div class="number">
+              <span> </span>
+            </div>
+            <div>
+              <span> </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section2">
+      <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between stretch">
+        <!-- gráfico frota -->
+        <mat-card class="chart full mat-elevation-z8" fxLayout="column" fxFlex="100" id="graficoFrota">
+          <mat-card-header>
+            <div mat-card-avatar class="avatar">
+              <mat-icon class="chart" style="color: #ef6c00; print-color-adjust: exact;">directions_car</mat-icon>
+            </div>
+            <mat-card-title>Frota</mat-card-title>
+            <!-- <mat-card-subtitle>Status dos Veículos</mat-card-subtitle> -->
+            <span class="spacer"></span>
+            <mat-icon class="more-icon" [matMenuTriggerFor]="frota">more_vert</mat-icon>
+            <mat-menu #frota="matMenu">
+              <button mat-menu-item (click)="toggleFS('graficoFrota')">Abrir em tela cheia</button>
+              <button mat-menu-item (click)="abrirDetalhes('frota')">Ver dados em Tabela</button>
+            </mat-menu>
+          </mat-card-header>
+          <mat-card-content>
+            <hr>
+            <!--google-chart [data]="frotaChart.data" [type]="frotaChart.type" [options]="frotaChart.options"
+              [columns]="frotaChart.names" *ngIf="frotaChart.data.length >= 1">
+            </google-chart-->
+            <div class="not-found" *ngIf="frotaChart.data.length < 1">
+              <div class="dado">
+                {{ notFound }}
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>

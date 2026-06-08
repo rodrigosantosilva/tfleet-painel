@@ -1,77 +1,98 @@
-@import "../../../styles/variables.scss";
+@use  "../../../styles/variables.scss" as var;
 
 mat-toolbar {
-  padding-left: 0%;
+    padding-left: 0%;
+    gap: 20px;
+    height: 10%;
 }
 
-.spacer {
-  flex: 1;
+.tfleet {
+    background-color: var.$tfleet-color;
 }
+
+.csn {
+    background-color: var.$csn-color;
+}
+
+.vale {
+    background-color: var.$vale-color;
+}
+
+.alelo {
+    background-color: var.$alelo-color;
+}
+
+.petropolis {
+    background-color: var.$petropolis-color;
+}
+
+.tfleetLogo {
+    width: 13%;
+    height: 100%;
+    background-image: url("../../../assets/img/tfleet_logo_branca.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.csnLogo {
+    width: 13%;
+    height: 100%;
+    background-image: url("../../../assets/img/tfleet_logo_branca.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+.valeLogo {
+    width: 13%;
+    height: 100%;
+    background-image: url("../../../assets/img/tfleet_logo_branca.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+.petropolisLogo {
+    width: 13%;
+    height: 100%;
+    background-image: url("../../../assets/img/tfleet_logo_branca.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+.aleloLogo {
+    width: 13%;
+    height: 100%;
+    background-image: url("../../../assets/img/logo-alelo.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 
 mat-icon {
   color: white;
 }
 
-.tfleet {
-  background-color: $tfleet-color;
+.logo {
+  color:white;
+  height: 100%;
+  width: 22.8%;
 }
 
-.tfleetIcon {
-  color: $tfleet-color;
-}
-
-
-.alelo {
-  background-color: $alelo-color;
-}
-
-.aleloIcon {
-  color: $alelo-color;
-}
-
-
-.vale {
-  background-color: $vale-color;
-}
-
-.valeIcon {
-  color: $vale-color;
+img{
+  width: 80%;
+  height: 100%;
+  align-content: center;
+  
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 
-@media (max-width: 768px) {
-  .welcome {
-    color: white;
-
-  }
-}
-
-@media (min-width: 768px) {
-  .welcome {
-    color: white;
-    margin-left: 32px;
-  }
-}
-
-a:link {
-  text-decoration: none;
-}
-
-.example-additional-selection {
-  opacity: 0.75;
-  font-size: 0.5em;
-}
-
-mat-form-field {
-  width: 50%;
-  font-size: 0.75em;
-  margin-left: 8px;
-}
-
-.empresa-mobile {
-  width: 40%;
-  font-size: 1em;
-  margin-left: 8px;
-  margin-right: 16px;
-  color: white !important;
+.title {
+    color: white;    
+}  
+.spacer {
+  flex: 1;
 }
