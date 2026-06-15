@@ -1,64 +1,75 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-//import { createWorker } from 'tesseract.js';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { environment } from '../../environments/environment';
+import { AESEncryptDecryptService } from '../services/aesencrypt-decrypt.service';
+import { resultResponse } from '../types/digitalizar-response.type';
+
+declare var Tesseract: any;
+
+const BACKEND_URL = environment.apiUrl + '/insert';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TesseractService {
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
+  database = localStorage.getItem('gerencial_db');
+
+
+  constructor(private http: HttpClient,
+    private snackBar: MatSnackBar,
+
+    private crypto: AESEncryptDecryptService) { }
 
   async reconhecerTexto(imagem: File | string): Promise<string> {
-    return ''; 
-  /*  const worker = await createWorker('por'); 
-    const ret = await worker.recognize(imagem); // O Tesseract aceita o arquivo File nativamente
-    await worker.terminate();
-    return ret.data.text;*/
+    const { data: { text } } = await Tesseract.recognize(imagem, 'por');
+    return text;
   }
 
-  async extrairTextoDaImagem(arquivo: File): Promise<string> {
-    return '';
-    // Segurança para não quebrar o build ou renderização no Servidor (SSR)
-   /* if (!isPlatformBrowser(this.platformId)) {
+  async pegarTextoClipboard(): Promise<string> {
+    try {
+      const texto = await navigator.clipboard.readText();
+      return texto;
+    } catch (err) {
+      console.error('Erro ao ler clipboard:', err);
       return '';
     }
-
-    try {
-      // Importação dinâmica para compatibilidade perfeita com o Vite
-      const { createWorker } = await import('tesseract.js');
-
-      // Cria e configura o worker para Português
-      const worker = await createWorker('por');
-
-      // Executa o reconhecimento óptico de caracteres (OCR)
-      const { data: { text } } = await worker.recognize(arquivo);
-
-      // Finaliza o processo para liberar memória do navegador
-      await worker.terminate();
-
-      return text;
-    } catch (erro) {
-      console.error('Erro no serviço de OCR:', erro);
-      throw new Error('Não foi possível processar a imagem.');
-    }*/
   }
 
+  async gravaManutencao(ordem: string, placa: string, motivo: string, data: string | null,
+    tipo: string, item: string, informacao: string, valor: string | null): Promise< resultResponse | null> {
+      const sql: string = `insert into tmp_manutencao(ordem,placa,motivo,data,tipo,item,informacao,valor) 
+                        values ('${ordem}','${placa}','${motivo}','${data}','${tipo}', '${item}','${informacao}','${valor}')`;
+      const resultado = await this.inserir(sql);
+      return resultado;
+  }
 
-  /*async reconhecer(file: File, lang: string = 'por'): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = async () => {
-        try {
-          const result = await Tesseract.recognize(reader.result as string, lang);
-          resolve(result.data.text);
-        } catch (err) {
-          reject(err);
-        }
-      };
-      reader.readAsDataURL(file);
+  async inserir(sql: string): Promise<resultResponse | null> {
+    try {
+      const response = await firstValueFrom(
+        this.http.post<{ result: resultResponse }>(BACKEND_URL + '/insert', {
+          sql,
+          db: this.database
+        })
+      );
+      console.log('response',response.result);
+      console.log('result',response.result.result);
+      return response.result;
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+      return null;
+    }
+  }
+
+  mostrarMensagem(texto: string) {
+    this.snackBar.open(texto, 'Fechar', {
+      duration: 3000, // tempo em ms
+      horizontalPosition: 'right',
+      verticalPosition: 'top'
     });
-  }*/
+  }
 
 }

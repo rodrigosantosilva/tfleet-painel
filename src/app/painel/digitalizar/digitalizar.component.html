@@ -1,9 +1,54 @@
 <app-painel>
     <div class="painel">
-
-        <div style="padding: 20px; font-family: sans-serif; max-width: 600px;">
+        <div class="heard-container">
+            <form [formGroup]="manutencaoForm" (ngSubmit)="onManutencao()">
+                <mat-list>
+                    <mat-list-item>
+                        <mat-form-field class="ordemexterna-field" appearance="outline">
+                            <mat-label>Ordem Externa</mat-label>
+                            <input matInput formControlName="ordemexterna" />
+                        </mat-form-field>
+                        <span> ‎ </span>
+                        <mat-form-field class="placa-field" appearance="outline">
+                            <mat-label>Placa</mat-label>
+                            <input matInput formControlName="placa" />
+                        </mat-form-field>
+                        <span> ‎ </span>
+                        <mat-form-field class="motivo-field" appearance="outline">
+                            <mat-label>Motivo</mat-label>
+                            <input matInput formControlName="motivo" />
+                        </mat-form-field>
+                        <span> ‎ </span>
+                        <mat-form-field appearance="outline" color="accent">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="picker" 
+                                            (input)="formatDate($event,'data')" 
+                                            placeholder="DD/MM/AAAA" 
+                                            formControlName="data">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <span> ‎ ‎ </span>
+                        <button class="btn-speciel" type="submit" [disabled]="manutencaoForm.invalid">
+                            Importar Dados
+                        </button>
+                    </mat-list-item>
+                </mat-list>
+            </form>
+        </div>
+        <div style="padding: 20px; font-family: sans-serif; max-width: 800px;">
             <h2>Leitor de Imagem com Serviço OCR</h2>
-
+            <mat-form-field>
+                <mat-label>Tipo</mat-label>
+                <select matNativeControl [(ngModel)]="tipo">
+                    <option value="" selected></option>
+                    <option value="produto">Produto</option>
+                    <option value="servico">Serviço</option>
+                </select>
+            </mat-form-field>
+            <span> ‎ </span>
+            <mat-checkbox [(ngModel)]="stainfo">Imagem com informação</mat-checkbox>
+            <span> ‎ </span>
             <input type="file" accept="image/png, image/jpeg, image/jpg, image/webp" (change)="onFileSelected($event)"
                 [disabled]="carregando()" />
 
@@ -12,24 +57,97 @@
                 <strong>Status:</strong> Processando imagem, por favor aguarde...
             </div>
             }
+            <div style="display: flex; gap: 20px; margin-top: 20px; align-items: flex-start;">
 
-            @if (imagemPreview()) {
-            <div style="margin-top: 15px;">
-                <h4>Imagem selecionada:</h4>
-                <img [src]="imagemPreview()" alt="Preview"
-                    style="max-width: 100%; max-height: 200px; border: 1px solid #ccc; border-radius: 4px;" />
-            </div>
-            }
+                @if (imagemPreview()) {
+                <div>
+                    <h4>Imagem selecionada:</h4>
+                    <img [src]="imagemPreview()" alt="Preview"
+                        style="max-width: 100%; max-height: 200px; border: 1px solid #ccc; border-radius: 4px;" />
+                </div>
+                }
 
-            @if (textoExtraido()) {
-            <div style="margin-top: 20px;">
-                <h3>Texto Identificado pelo Serviço:</h3>
-                <pre
-                    style="background: #f8f9fa; padding: 15px; border: 1px solid #e9ecef; border-radius: 5px; white-space: pre-wrap; font-family: monospace;">
-        {{ textoExtraido() }}
-      </pre>
+                @if (textoExtraido()) {
+                <div style="flex: 1; min-width: 800px;">
+                    <h3>Texto Identificado pelo Serviço:</h3>
+                    <pre
+                        style="min-width: 800px; background: #f8f9fa; padding: 15px; border: 1px solid #e9ecef; border-radius: 5px; white-space: pre-wrap; font-family: monospace;">
+                    {{ textoExtraido() }}
+                </pre>
+                </div>
+                }
             </div>
-            }
+        </div>
+        <div class="heard-container">
+            <form [formGroup]="form" (ngSubmit)="onItem()">
+                <mat-list>
+                    <mat-list-item>
+                        <mat-form-field class="tipo-field" appearance="outline">
+                            <mat-label>Tipo</mat-label>
+                            <select matNativeControl formControlName="tipo">
+                                <option value="produto">Produto</option>
+                                <option value="servico">Serviço</option>
+                            </select>
+                        </mat-form-field>
+        
+                        <mat-form-field class="item-field" appearance="outline">
+                            <mat-label>item</mat-label>
+                            <input matInput formControlName="item" />
+                        </mat-form-field>
+            
+                        <mat-form-field class="informacao-field" appearance="outline">
+                            <mat-label>Informação</mat-label>
+                            <input matInput formControlName="informacao" />
+                        </mat-form-field>
+       
+                        <mat-form-field class="valor-field" appearance="outline">
+                            <mat-label>Valor</mat-label>
+                            <input matInput formControlName="valor" />
+                        </mat-form-field>
+                        <span> ‎ ‎ </span>
+                        <button class="btn-speciel" type="button" (click)="onAlter()" [disabled]="form.invalid">
+                            Alterar
+                        </button>
+                        <span> ‎ </span>
+                        <button class="btn-speciel" type="button" (click)="onDelete()">
+                            Excluir
+                        </button>
+                        <span> ‎ </span>
+                        <button class="btn-speciel" type="submit" [disabled]="form.invalid">
+                            Adicionar
+                        </button>                    
+                    </mat-list-item>
+                </mat-list>
+            </form>
+        </div>
+        <div class="table-container">
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                <ng-container matColumnDef="id" class="mat-column-id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="tipo" class="mat-column-tipo">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.tipo }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="item" class="mat-column-item">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Item </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.item }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="informacao" class="mat-column-informacao">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Informação </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.informacao }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="valor" class="mat-column-valor">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Valor </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.valor }} </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns" class="table-header"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selecionarRegistro(row)"
+                    [class.selected]="row === registroSelecionado">
+                </mat-row>
+
+            </table>
         </div>
     </div>
 </app-painel>
