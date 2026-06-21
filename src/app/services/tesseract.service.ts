@@ -1,15 +1,17 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Observable, firstValueFrom } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { environment } from '../../environments/environment';
 import { AESEncryptDecryptService } from '../services/aesencrypt-decrypt.service';
-import { resultResponse } from '../types/digitalizar-response.type';
+import { resultResponse, listaatendimento } from '../types/digitalizar-response.type';
 
 declare var Tesseract: any;
 
 const BACKEND_URL = environment.apiUrl + '/insert';
+const BACKEND_CONSULTA = environment.apiUrl + '/consulta';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +23,17 @@ export class TesseractService {
 
   constructor(private http: HttpClient,
     private snackBar: MatSnackBar,
-
     private crypto: AESEncryptDecryptService) { }
+
+  getDados(): Observable<listaatendimento[]> {
+    const sql = '';
+
+    return this.http.post<{ result: listaatendimento[] }>(BACKEND_CONSULTA + '/consulta', {
+      sql,
+      db: this.database
+    })
+      .pipe(map(response => response.result)); // Extraindo apenas a propriedade 'result
+  }
 
   async reconhecerTexto(imagem: File | string): Promise<string> {
     const { data: { text } } = await Tesseract.recognize(imagem, 'por');
@@ -40,11 +51,11 @@ export class TesseractService {
   }
 
   async gravaManutencao(ordem: string, placa: string, motivo: string, data: string | null,
-    tipo: string, item: string, informacao: string, valor: string | null): Promise< resultResponse | null> {
-      const sql: string = `insert into tmp_manutencao(ordem,placa,motivo,data,tipo,item,informacao,valor) 
+    tipo: string, item: string, informacao: string, valor: string | null): Promise<resultResponse | null> {
+    const sql: string = `insert into tmp_manutencao(ordem,placa,motivo,data,tipo,item,informacao,valor) 
                         values ('${ordem}','${placa}','${motivo}','${data}','${tipo}', '${item}','${informacao}','${valor}')`;
-      const resultado = await this.inserir(sql);
-      return resultado;
+    const resultado = await this.inserir(sql);
+    return resultado;
   }
 
   async inserir(sql: string): Promise<resultResponse | null> {
@@ -55,8 +66,6 @@ export class TesseractService {
           db: this.database
         })
       );
-      console.log('response',response.result);
-      console.log('result',response.result.result);
       return response.result;
     } catch (error) {
       console.error('Erro na requisição:', error);

@@ -21,7 +21,7 @@ export class MultasService {
               private crypto: AESEncryptDecryptService) {}
 
   getTipos(): any {
-    const sql = this.sqlList.getTipoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getTipoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                         localStorage.getItem('dataInicial')!,
                                         localStorage.getItem('dataFinal')!,
                                         this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -50,7 +50,7 @@ export class MultasService {
 
 
   getTipos2(): any {
-    const sql = this.sqlList.getTipoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getTipoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                         localStorage.getItem('dataInicial') !,
                                         localStorage.getItem('dataFinal')! ,
                                         this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -78,7 +78,7 @@ export class MultasService {
   }
 
   getReembolso(): any {
-    const sql = this.sqlList.getReembolsoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getReembolsoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                         localStorage.getItem('dataInicial') !,
                                         localStorage.getItem('dataFinal')!,
                                         this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -106,7 +106,7 @@ export class MultasService {
   }
 
   getTempoDia(): any {
-    const sql = this.sqlList.getTempoDiaSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getTempoDiaSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                         localStorage.getItem('dataInicial') !,
                                         localStorage.getItem('dataFinal')! ,
                                         this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -134,7 +134,7 @@ export class MultasService {
   }
  
   getTempoHora(): any {
-    const sql = this.sqlList.getTempoHoraSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getTempoHoraSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                         localStorage.getItem('dataInicial') !,
                                         localStorage.getItem('dataFinal')! ,
                                         this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -162,7 +162,7 @@ export class MultasService {
   }
 
   getResumoGravidade(dias: number): any {
-    const sql = this.sqlList.getResumoGravidade(dias || 365, this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getResumoGravidade(dias || 365, this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                                       this.crypto.decrypt(localStorage.getItem('gerencial')!),
                                                       this.crypto.decrypt(localStorage.getItem('contrato')!),
                                                       this.crypto.decrypt(localStorage.getItem('legalN')!),
@@ -187,7 +187,7 @@ export class MultasService {
   }
 
   getGravidade(): any {
-    const sql = this.sqlList.getGravidadeSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getGravidadeSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -214,7 +214,7 @@ export class MultasService {
   }
 
   getDescricao(): any {
-    const sql = this.sqlList.getDescricaoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getDescricaoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -241,7 +241,7 @@ export class MultasService {
   }
 
   getMensal(): any {
-    const sql = this.sqlList.getMensalSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getMensalSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                           localStorage.getItem('dataInicial') !,
                                           localStorage.getItem('dataFinal')! ,
                                           this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -268,7 +268,7 @@ export class MultasService {
   }
 
   getMensalValor(): any {
-    const sql = this.sqlList.getMensalValorSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getMensalValorSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                           localStorage.getItem('dataInicial') !,
                                           localStorage.getItem('dataFinal')! ,
                                           this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -295,7 +295,7 @@ export class MultasService {
   }
 
   getTop10(): any {
-    const sql = this.sqlList.getTop10(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getTop10(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                       localStorage.getItem('dataInicial') !,
                                       localStorage.getItem('dataFinal')! ,
                                       this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -322,7 +322,7 @@ export class MultasService {
   }
 
   getQtde10(): any {
-    const sql = this.sqlList.getQtde10SQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getQtde10SQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                       localStorage.getItem('dataInicial') !,
                                       localStorage.getItem('dataFinal')! ,
                                       this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -349,7 +349,7 @@ export class MultasService {
   }
 
   getGravissimas(): any {
-    const sql = this.sqlList.getGravissima(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getGravissima(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                             localStorage.getItem('dataInicial') !,
                                             localStorage.getItem('dataFinal')! ,
                                             this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -376,7 +376,7 @@ export class MultasService {
   }
 
   getEstados(): any {
-    const sql = this.sqlList.getEstados(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getEstados(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                         localStorage.getItem('dataInicial') !,
                                         localStorage.getItem('dataFinal')! ,
                                         this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -403,7 +403,7 @@ export class MultasService {
   }
 
   generatAll(): any {
-    const sql = this.sqlList.allSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.allSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                     localStorage.getItem('dataInicial') !,
                                     localStorage.getItem('dataFinal')! ,
                                     this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -431,7 +431,7 @@ export class MultasService {
   }
 
   generateDeparto(): any {
-    const sql = this.sqlList.getDepartoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getDepartoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                     localStorage.getItem('dataInicial') !,
                                     localStorage.getItem('dataFinal')! ,
                                     this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -458,7 +458,7 @@ export class MultasService {
   }
 
   generateUnidade(): any {
-    const sql = this.sqlList.getUnidadeSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getUnidadeSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                     localStorage.getItem('dataInicial') !,
                                     localStorage.getItem('dataFinal')! ,
                                     this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -485,7 +485,7 @@ export class MultasService {
   }
   
   generateEmpresa(): any {
-    const sql = this.sqlList.getEmpresaSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getEmpresaSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                     localStorage.getItem('dataInicial') !,
                                     localStorage.getItem('dataFinal')! ,
                                     this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -517,7 +517,7 @@ export class MultasService {
   }
 
   getMultasValores(): any {
-    const sql = this.sqlList.getValorTipoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getValorTipoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                       localStorage.getItem('dataInicial') !,
                                       localStorage.getItem('dataFinal')! ,
                                       this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -544,7 +544,7 @@ export class MultasService {
   }
 
   getFilterTipo(): any {
-    const sql = this.sqlList.filterTipoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.filterTipoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                       localStorage.getItem('dataInicial') !,
                                       localStorage.getItem('dataFinal')! ,
                                       this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -570,7 +570,7 @@ export class MultasService {
     return this.http.post<{ result: any[] }>(BACKEND_URL + '/consulta', { sql, db: this.database});
   }
   getFilterGravidade(): any {
-    const sql = this.sqlList.filterGravidadeSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.filterGravidadeSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                       localStorage.getItem('dataInicial') !,
                                       localStorage.getItem('dataFinal')! ,
                                       this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -596,7 +596,7 @@ export class MultasService {
     return this.http.post<{ result: any[] }>(BACKEND_URL + '/consulta', { sql, db: this.database});
   }
   getFilterDescricao(): any {
-    const sql = this.sqlList.filterDescricaoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.filterDescricaoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                       localStorage.getItem('dataInicial') !,
                                       localStorage.getItem('dataFinal')! ,
                                       this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -622,7 +622,7 @@ export class MultasService {
     return this.http.post<{ result: any[] }>(BACKEND_URL + '/consulta', { sql, db: this.database});
   }
   getFilterReembolso(): any {
-    const sql = this.sqlList.filterReembolsoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.filterReembolsoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                       localStorage.getItem('dataInicial') !,
                                       localStorage.getItem('dataFinal')! ,
                                       this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -649,7 +649,7 @@ export class MultasService {
   }
 
   getTop10PlacasValores(): any {
-    const sql = this.sqlList.getTop10PlacaValorSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getTop10PlacaValorSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                       localStorage.getItem('dataInicial') !,
                                       localStorage.getItem('dataFinal')! ,
                                       this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -677,7 +677,7 @@ export class MultasService {
   }
 
   getTop10ClassificacaoValores(): any {
-    const sql = this.sqlList.getTop10ClassificacaoValorSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getTop10ClassificacaoValorSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                       localStorage.getItem('dataInicial') !,
                                       localStorage.getItem('dataFinal')! ,
                                       this.crypto.decrypt(localStorage.getItem('gerencial')!),
@@ -705,7 +705,7 @@ export class MultasService {
   }
 
   getTiposR(): any {
-    const sql = this.sqlList.getTiposRSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getTiposRSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                         localStorage.getItem('dataInicial') !,
                                         localStorage.getItem('dataFinal')! ,
                                         localStorage.getItem('modulo') || 'vazio',
@@ -730,7 +730,7 @@ export class MultasService {
   }
  
   gettop10parado(): any {
-    const sql = this.sqlList.gettop10paradoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.gettop10paradoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                         localStorage.getItem('dataInicial') !,
                                         localStorage.getItem('dataFinal')! ,
                                         localStorage.getItem('modulo') || 'vazio',
@@ -755,7 +755,7 @@ export class MultasService {
   } 
 
   gettop10excesso(): any {
-    const sql = this.sqlList.gettop10excessoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.gettop10excessoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                         localStorage.getItem('dataInicial') !,
                                         localStorage.getItem('dataFinal')! ,
                                         localStorage.getItem('modulo') || 'vazio',
@@ -780,7 +780,7 @@ export class MultasService {
   }  
   
   gettop10freadas(): any {
-    const sql = this.sqlList.gettop10freadasSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.gettop10freadasSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                         localStorage.getItem('dataInicial') !,
                                         localStorage.getItem('dataFinal')! ,
                                         localStorage.getItem('modulo') || 'vazio',
@@ -804,7 +804,7 @@ export class MultasService {
     return this.http.post<{ result: any[] }>(BACKEND_URL + '/consulta', {sql, db: this.database});
   }  
   gettop10notificacao(): any {
-    const sql = this.sqlList.gettop10notificaSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.gettop10notificaSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                         localStorage.getItem('dataInicial') !,
                                         localStorage.getItem('dataFinal')! ,
                                         localStorage.getItem('modulo') || 'vazio',
@@ -830,7 +830,7 @@ export class MultasService {
 
 
   getQuantitativoR(): any {
-    const sql = this.sqlList.getQuantitativoRSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getQuantitativoRSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                         localStorage.getItem('dataInicial') !,
                                         localStorage.getItem('dataFinal')! ,
                                         localStorage.getItem('modulo') || 'vazio',
@@ -855,7 +855,7 @@ export class MultasService {
   }
 
   getProvedorRastreado(): any {
-    const sql = this.sqlList.getProvedorRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getProvedorRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -879,7 +879,7 @@ export class MultasService {
   }
 
   getTipoRastreado(): any {
-    const sql = this.sqlList.getTipoRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getTipoRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -903,7 +903,7 @@ export class MultasService {
   }
 
   getDescricaoRastreado(): any {
-    const sql = this.sqlList.getDescricaoRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getDescricaoRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -927,7 +927,7 @@ export class MultasService {
   }
 
   getEstadoRastreado(): any {
-    const sql = this.sqlList.getEstadoRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getEstadoRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -951,7 +951,7 @@ export class MultasService {
   }
 
   getkmMesRastreado(): any {
-    const sql = this.sqlList.getkmMesRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getkmMesRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -975,7 +975,7 @@ export class MultasService {
   }
 
   getkmTipoRastreado(): any {
-    const sql = this.sqlList.getkmTipoRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getkmTipoRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -1000,7 +1000,7 @@ export class MultasService {
 
 
   getkmDiaRastreado(): any {
-    const sql = this.sqlList.getkmDiaRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getkmDiaRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -1024,7 +1024,7 @@ export class MultasService {
   }  
   
   getkmDiaMedioRastreado(): any {
-    const sql = this.sqlList.getkmDiaMedioRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getkmDiaMedioRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -1048,7 +1048,7 @@ export class MultasService {
   }  
 
   getOcupacaoMesRastreado(): any {
-    const sql = this.sqlList.getOcupacaoMesRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getOcupacaoMesRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -1072,7 +1072,7 @@ export class MultasService {
   }
 
   getOcupacaoDiaRastreado(): any {
-    const sql = this.sqlList.getOcupacaoDiaRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getOcupacaoDiaRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -1096,7 +1096,7 @@ export class MultasService {
   }
 
   getOcupacaoDiaMedioRastreado(): any {
-    const sql = this.sqlList.getOcupacaoDiaMedioRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getOcupacaoDiaMedioRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -1120,7 +1120,7 @@ export class MultasService {
   }
 
   getOcupacaoTipoRastreado(): any {
-    const sql = this.sqlList.getOcupacaoTipoRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getOcupacaoTipoRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -1143,7 +1143,7 @@ export class MultasService {
     return this.http.post<{ result: any[] }>(BACKEND_URL + '/consulta', {sql, db: this.database});
   }
   getOcupacaoBaixaRastreado(): any {
-    const sql = this.sqlList.getOcupacaobaixaRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getOcupacaobaixaRastreadoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -1168,7 +1168,7 @@ export class MultasService {
   } 
 
   getTabelaVeiculoKm(): any {
-    const sql = this.sqlList.getTabelaVeiculoKmSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getTabelaVeiculoKmSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -1193,7 +1193,7 @@ export class MultasService {
   } 
 
   getMensalR(): any {
-    const sql = this.sqlList.getMensalRSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getMensalRSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -1218,7 +1218,7 @@ export class MultasService {
   } 
 
   getHistoricoKm(): any {
-    const sql = this.sqlList.getHistorKmSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getHistorKmSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -1243,7 +1243,7 @@ export class MultasService {
   } 
 
   getTabelaVeiculoTempo(): any {
-    const sql = this.sqlList.getTabelaVeiculoTempoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getTabelaVeiculoTempoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -1268,7 +1268,7 @@ export class MultasService {
   } 
 
   getTabelaSetorKm(): any {
-    const sql = this.sqlList.getTabelaSetorKmSQL(this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+    const sql = this.sqlList.getTabelaSetorKmSQL(this.crypto.decrypt(localStorage.getItem('empresa')!),
                                               localStorage.getItem('dataInicial') !,
                                               localStorage.getItem('dataFinal')! ,
                                               localStorage.getItem('modulo') || 'vazio',
@@ -1294,7 +1294,7 @@ export class MultasService {
   generatAllTelemetria(): any {
     const sql = this.sqlList.allTelemetriaSQL(localStorage.getItem('dataInicial')!,
                                     localStorage.getItem('dataFinal')! ,
-                                    this.crypto.decrypt(localStorage.getItem('empresa')!) || null,
+                                    this.crypto.decrypt(localStorage.getItem('empresa')!) ,
                                     this.crypto.decrypt(localStorage.getItem('gerencial')!),
                                   this.crypto.decrypt(localStorage.getItem('contrato')!),
                                   this.crypto.decrypt(localStorage.getItem('legalN')!),

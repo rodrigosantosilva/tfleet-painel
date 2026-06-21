@@ -1,0 +1,54 @@
+<app-painel>
+  <div class="painel">
+    <div class="section1">
+      <div class="btn-wrapper">
+        <button class="btn-speciel" (click)="atendimento()">Abrir Atendimento</button>
+        <span> ‎ </span>
+        <button class="btn-speciel" (click)="digitalizar()">Digitalizar</button>
+      </div>
+    </div>
+    <div class="section2">
+      <div class="table-container">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Localizar">
+        </mat-form-field>
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+          <ng-container matColumnDef="atendimento" class="mat-column-atendimento">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Atendimento </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.atendimento }} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="seqos" class="mat-column-seqos">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Ordem de Serviço </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.seqos }} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="ordemexterna" class="mat-column-ordemexterna">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Ordem Externa </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.ordemexterna }} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="placa" class="mat-column-placa">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Placa </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.placa }} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="motivo" class="mat-column-motivo">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Motivo </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.motivo }} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="valor" class="mat-column-valor">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Valor </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.valor | number:'1.2-2' }} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="dtaprovacao" class="mat-column-dtaprovacao">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Aprovação </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.dtaprovacao }} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="dtfechamento" class="mat-column-dtfechamento">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Fechamento </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.dtfechamento }} </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns" class="table-header"></mat-header-row>
+        </table>
+        <mat-paginator [pageSizeOptions]="[50, 20, 10, 5]" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+  </div>
+</app-painel>

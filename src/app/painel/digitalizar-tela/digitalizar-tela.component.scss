@@ -1,0 +1,74 @@
+@use "../../../styles/variables.scss" as var;
+
+.painel {
+  padding: 5px;
+}
+
+.section1 {
+  width: 100%;
+  margin: 0px;
+  padding: 5px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.heard-container {
+  max-height: 80px;
+}
+
+.table-container {
+  min-height: 300px;
+  max-height: 900px;
+  overflow: auto;
+}
+
+.selected {
+  background-color: var.$default-color;
+  font-weight: bold;
+  color: white;
+}
+
+.btn-speciel {
+  width: 20%;
+  border-radius: 8px;  
+  font-size: 14px;
+  background: transparent;
+  padding-bottom: 10px;
+  height: 50px;
+  background-color: var.$default-color; 
+  font-weight: bold;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-speciel:disabled {
+  width: 20%;
+  border-radius: 8px;  
+  font-size: 14px;
+  background: transparent;
+  padding-bottom: 10px;
+  height: 50px;
+  background-color: #b0bec5;
+  color: #ffffff;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+input {
+  text-transform: uppercase;
+}
+
+
+.table-header{
+  background-color: #b0bec5;
+  color: black;
+}
+
+.mat-column-id {
+  flex: 0 0 5%;
+}
+
+

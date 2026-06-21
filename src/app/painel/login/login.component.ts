@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 const companies = ['TFLEET', 'ALELO', 'CSN', 'VALE', 'PETROPOLIS']
 import { LoginService } from '../../services/login.service';
@@ -71,8 +71,8 @@ export class LoginComponent implements OnInit {
       dataFinal.setMilliseconds(0);
       dataInicial.setDate(dataFinal.getDate() - 365);
 
-      localStorage.setItem('dataInicial', moment(dataInicial).format('DD/MM/YYYY'));
-      localStorage.setItem('dataFinal', moment(dataFinal).format('DD/MM/YYYY'));
+      localStorage.setItem('dataInicial', format(dataInicial, 'dd/MM/yyyy'));
+      localStorage.setItem('dataFinal', format(dataFinal, 'dd/MM/yyyy'));
       localStorage.setItem('opcao', 'os');
       localStorage.setItem('gerencial_db', this.loginForm.get('grupo')!.value);
 
@@ -106,8 +106,8 @@ export class LoginComponent implements OnInit {
       dataFinal.setMilliseconds(0);
       dataInicial.setDate(dataFinal.getDate() - 365);
 
-      localStorage.setItem('dataInicial', moment(dataInicial).format('DD/MM/YYYY'));
-      localStorage.setItem('dataFinal', moment(dataFinal).format('DD/MM/YYYY'));
+      localStorage.setItem('dataInicial', format(dataInicial, 'dd/MM/yyyy'));
+      localStorage.setItem('dataFinal', format(dataFinal, 'dd/MM/yyyy'));
       localStorage.setItem('opcao', 'os');
       localStorage.setItem('gerencial_db', this.loginForm.get('grupo')!.value);
 

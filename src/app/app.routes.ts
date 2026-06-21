@@ -13,12 +13,15 @@ import { LocacoesComponent } from './painel/locacoes/locacoes.component';
 import { AbastecimentoComponent } from './painel/abastecimento/abastecimento.component';
 import { RelatorioRapidoComponent } from './painel/relatorio-rapido/relatorio-rapido.component';
 import { DigitalizarComponent } from './painel/digitalizar/digitalizar.component';
-
+import { DigitalizarGridComponent } from './painel/digitalizar-grid/digitalizar-grid.component';
+import { DigitalizarTelaComponent } from './painel/digitalizar-tela/digitalizar-tela.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'login', component: LoginComponent },
     { path: 'digitalizar', component: DigitalizarComponent,canActivate: [AuthGuardService] },
+    { path: 'digitaGrid', component: DigitalizarGridComponent,canActivate: [AuthGuardService] },
+    { path: 'digitaTela', component: DigitalizarTelaComponent,canActivate: [AuthGuardService] },
     { path: 'painel', component: PainelComponent, canActivate: [AuthGuardService], children: [
             { path: '', component: PainelComponent, canActivate: [AuthGuardService] },
             { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },

@@ -61,7 +61,7 @@ export class SidebarComponent implements OnInit {
   }
 
   digitalizar(){
-    this.router.navigate(["digitalizar"]) 
+    this.router.navigate(["digitaGrid"]);
   }
 
 }

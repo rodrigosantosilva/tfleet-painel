@@ -55,6 +55,7 @@ export class ToolbarComponent implements OnInit {
   numeroZero = 10101;
   nodata = false;
   word: string= '';
+  numeros: number[] = [];
 
   empresasForm = new FormControl();
 
@@ -95,10 +96,16 @@ export class ToolbarComponent implements OnInit {
         localStorage.setItem('reload', 'true');              
       } else {
         this.separaEmpresas();
-        let valores = this.crypto.decrypt(localStorage.getItem('empresa')!);
-        valores = valores.split(',');
-        valores = this.stringToNumberArray(valores);      
-        this.empresasForm.setValue(valores);
+        const item = localStorage.getItem('empresa');
+        if (item) {
+          let valores = this.crypto.decrypt(item); // precisa retornar string
+          const partes = valores.split(',');       // array de strings
+          this.numeros = this.stringToNumberArray(partes); // array de números
+        } else {
+          this.numeros =[];
+        }
+          
+        this.empresasForm.setValue(this.numeros);
       }
 
     });
