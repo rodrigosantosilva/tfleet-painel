@@ -17,6 +17,10 @@ export interface listaatendimento {
   dtfechamento: string
 }
 
+export type listaMotivo = {
+  codigomot: number,
+  motivo: string
+}
 
 export type resultResponse = {
   id: number,

@@ -10,18 +10,16 @@
   padding: 5px;
 }
 
+.section2 {
+    width: 100%;
+    min-height:410px;
+    margin: 0px;
+    padding: 5px;
+    background: white;
+}
+
 .spacer {
   flex: 1;
-}
-
-.heard-container {
-  max-height: 80px;
-}
-
-.table-container {
-  min-height: 300px;
-  max-height: 900px;
-  overflow: auto;
 }
 
 .selected {
@@ -57,18 +55,34 @@
   opacity: 0.8;
 }
 
-input {
-  text-transform: uppercase;
+.example-full-width {
+  width: 100%;
 }
 
-
-.table-header{
-  background-color: #b0bec5;
-  color: black;
+td {
+  padding-right: 8px;
 }
 
-.mat-column-id {
-  flex: 0 0 5%;
+.motivo-field{
+  width: 100%;
 }
 
+.servico-field{
+  width: 100%;
+}
 
+.realizados-field{
+  width: 100%;
+}
+
+::ng-deep .mat-datepicker-content {
+  background-color: #fff !important; /* fundo branco */
+}
+
+::ng-deep .mat-calendar {
+  background-color: #fff !important; /* corpo do calendário */
+}
+
+::ng-deep .cdk-overlay-pane {
+  background-color: #fff !important;
+}

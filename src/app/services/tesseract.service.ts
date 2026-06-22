@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { environment } from '../../environments/environment';
 import { AESEncryptDecryptService } from '../services/aesencrypt-decrypt.service';
-import { resultResponse, listaatendimento } from '../types/digitalizar-response.type';
+import { resultResponse, listaatendimento, listaMotivo } from '../types/digitalizar-response.type';
 
 declare var Tesseract: any;
 
@@ -26,7 +26,11 @@ export class TesseractService {
     private crypto: AESEncryptDecryptService) { }
 
   getDados(): Observable<listaatendimento[]> {
-    const sql = '';
+    const sql = `select o.codigoate, o.seqos, o.ordemexterna, o.placa, m.motivo,
+                        0 as valor, o.dtaprovacao, o.dtfechamento 
+                   from lordserv o
+                  inner join cgmotivo m on m.codigomot = o.codigomot
+                  where 1=0 ` ;
 
     return this.http.post<{ result: listaatendimento[] }>(BACKEND_CONSULTA + '/consulta', {
       sql,
@@ -34,6 +38,18 @@ export class TesseractService {
     })
       .pipe(map(response => response.result)); // Extraindo apenas a propriedade 'result
   }
+
+
+  getMotivo(): Observable<any> {
+    const sql = 'select codigomot, motivo from cgmotivo order by motivo';
+
+    return this.http.post<{ result: listaMotivo[] }>(BACKEND_CONSULTA + '/consulta', {
+      sql,
+      db: this.database
+    })
+      .pipe(map(response => response.result)); // Extraindo apenas a propriedade 'result
+  }
+
 
   async reconhecerTexto(imagem: File | string): Promise<string> {
     const { data: { text } } = await Tesseract.recognize(imagem, 'por');
