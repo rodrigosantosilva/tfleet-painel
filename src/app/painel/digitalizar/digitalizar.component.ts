@@ -15,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { PainelComponent } from '../painel/painel.component';
 import { TesseractService } from '../../services/tesseract.service';
-import { itemmanutencao } from '../../types/digitalizar-response.type';
+import { itemmanutencao,listaMotivo } from '../../types/digitalizar-response.type';
 
 @Component({
   selector: 'app-digitalizar',
@@ -41,6 +41,7 @@ export class DigitalizarComponent implements OnInit {
   tipo: string = '';
   stainfo: boolean = false;
   dataformadada: string | null = '';
+  dataMotivo: listaMotivo[] = [];
 
   constructor(private tctService: TesseractService,
     private fb: FormBuilder,
@@ -56,7 +57,14 @@ export class DigitalizarComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  IncluirRegistro(element: any) {
+    this.registroSelecionado = element;
+    this.manutencaoForm.get('ordemexterna')?.setValue(this.registroSelecionado.ordemexterna);
+    this.manutencaoForm.get('placa')?.setValue(this.registroSelecionado.placa);
+    this.manutencaoForm.get('codmotivo')?.setValue(this.registroSelecionado.motivo);
+  }
+
+  async ngOnInit(): Promise<void>  {
 
     this.form = this.fb.group({
       tipo: ['', Validators.required],
@@ -68,10 +76,31 @@ export class DigitalizarComponent implements OnInit {
     this.manutencaoForm = this.fb.group({
       ordemexterna: ['', Validators.required],
       placa: ['', Validators.required],
-      motivo: ['', Validators.required],
+      codmotivo: ['', Validators.required],
       data: [new Date, Validators.required]
     });
 
+    this.registroSelecionado = this.tctService.getRegistro();
+    if (this.registroSelecionado) {
+      this.IncluirRegistro(this.registroSelecionado);
+      this.tctService.setRegistro(null);
+    }
+
+    await this.ListaMotivo();
+  }
+
+  ListaMotivo(): Promise<void> {
+    return new Promise(resolve => {
+      this.tctService.getMotivo().subscribe(dados => {
+        for (const item of dados) {
+          this.dataMotivo.push({
+            codigomot: item[0].toString(),
+            motivo: item[1]
+          });
+        }
+        resolve();  // sinaliza que terminou
+      });
+    });
   }
 
   async onFileSelected(event: Event) {
@@ -132,7 +161,6 @@ export class DigitalizarComponent implements OnInit {
     return data.toLocaleDateString('pt-BR'); // já retorna dd/MM/yyyy
   }
 
-
   async onManutencao() {
     if (this.manutencaoForm.valid) {
       this.dataformadada = this.formatarData();
@@ -141,7 +169,7 @@ export class DigitalizarComponent implements OnInit {
         const result = await this.tctService.gravaManutencao(
           this.manutencaoForm.value.ordemexterna.toUpperCase(),
           this.manutencaoForm.value.placa.toUpperCase(),
-          this.manutencaoForm.value.motivo.toUpperCase(),
+          this.manutencaoForm.value.codmotivo.toUpperCase(),
           this.dataformadada,
           item.tipo.toUpperCase(),
           item.item.toUpperCase(),
@@ -159,13 +187,10 @@ export class DigitalizarComponent implements OnInit {
       this.dataSource.data = [];
       this.manutencaoForm.get('ordemexterna')?.setValue('');
       this.manutencaoForm.get('placa')?.setValue('');
-      this.manutencaoForm.get('motivo')?.setValue('');
-
+      this.manutencaoForm.get('codmotivo')?.setValue('');
       this.tctService.mostrarMensagem("Registros inseridos com Sucesso.");
     }
   }
-
-
 
   extrairItens3(texto: string) {
     const linhas = texto.trim().split("\n");

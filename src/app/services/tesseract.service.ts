@@ -19,7 +19,7 @@ const BACKEND_CONSULTA = environment.apiUrl + '/consulta';
 export class TesseractService {
 
   database = localStorage.getItem('gerencial_db');
-
+  registroSelecionado: any;
 
   constructor(private http: HttpClient,
     private snackBar: MatSnackBar,
@@ -39,9 +39,11 @@ export class TesseractService {
       .pipe(map(response => response.result)); // Extraindo apenas a propriedade 'result
   }
 
-
   getMotivo(): Observable<any> {
-    const sql = 'select codigomot, motivo from cgmotivo order by motivo';
+    const sql = `select codigomot,motivo from cgmotivo m 
+                  where staativo = 1 and stasac = 'V' 
+                    and motivo not like '%(%'
+                  order by 2`;
 
     return this.http.post<{ result: listaMotivo[] }>(BACKEND_CONSULTA + '/consulta', {
       sql,
@@ -49,8 +51,15 @@ export class TesseractService {
     })
       .pipe(map(response => response.result)); // Extraindo apenas a propriedade 'result
   }
+  
+  setRegistro(element: any) {
+    this.registroSelecionado = element;
+  }
 
-
+  getRegistro() {
+    return this.registroSelecionado;
+  }
+ 
   async reconhecerTexto(imagem: File | string): Promise<string> {
     const { data: { text } } = await Tesseract.recognize(imagem, 'por');
     return text;

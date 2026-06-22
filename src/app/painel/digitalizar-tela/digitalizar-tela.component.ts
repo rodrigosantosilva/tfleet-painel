@@ -15,12 +15,8 @@ import { Router } from '@angular/router';
 
 import { PainelComponent } from '../painel/painel.component';
 import { TesseractService } from '../../services/tesseract.service';
-import { listaatendimento } from '../../types/digitalizar-response.type';
+import { listaatendimento,listaMotivo } from '../../types/digitalizar-response.type';
 
-interface ListaMotivo {
-  codigomot: string;
-  motivo: string;
-}
 
 @Component({
   selector: 'app-digitalizar-tela',
@@ -32,10 +28,8 @@ interface ListaMotivo {
 })
 export class DigitalizarTelaComponent implements OnInit {
   form!: FormGroup;
-  motivo: string = '';
-
-
-  dataMotivo: ListaMotivo[] = [];
+  registro: any;
+  dataMotivo: listaMotivo[] = [];
 
   constructor(private tctService: TesseractService,
     private fb: FormBuilder,
@@ -52,7 +46,7 @@ export class DigitalizarTelaComponent implements OnInit {
       abertura: ['', Validators.required],
       entrada: ['']
     });
-
+    
     await this.ListaMotivo();
   }
 
@@ -71,6 +65,12 @@ export class DigitalizarTelaComponent implements OnInit {
   }
 
   onSalvar() {
+    this.registro = {
+      ordemexterna: this.form.value.ordemexterna.toUpperCase(),
+      placa: this.form.value.placa.toUpperCase(),
+      motivo: this.form.value.codmotivo
+    }
+    this.tctService.setRegistro(this.registro);   
     this.router.navigate(["digitalizar"]);
   }
 

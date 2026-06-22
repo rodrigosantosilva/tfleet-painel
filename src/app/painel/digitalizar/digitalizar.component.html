@@ -7,17 +7,21 @@
                     <mat-list-item>
                         <mat-form-field class="ordemexterna-field" appearance="outline">
                             <mat-label>Ordem Externa</mat-label>
-                            <input matInput formControlName="ordemexterna" />
+                            <input matInput formControlName="ordemexterna" aria-label="Ordem Externa" />
                         </mat-form-field>
                         <span> ‎ </span>
                         <mat-form-field class="placa-field" appearance="outline">
                             <mat-label>Placa</mat-label>
-                            <input matInput formControlName="placa" />
+                            <input matInput formControlName="placa" aria-label="placa" />
                         </mat-form-field>
                         <span> ‎ </span>
                         <mat-form-field class="motivo-field" appearance="outline">
-                            <mat-label>Motivo</mat-label>
-                            <input matInput formControlName="motivo" />
+                            <mat-label>Item</mat-label>
+                            <mat-select formControlName="codmotivo">
+                            @for (item of dataMotivo; track item) {
+                            <mat-option [value]="item.codigomot">{{item.motivo}}</mat-option>
+                            }
+                            </mat-select>
                         </mat-form-field>
                         <span> ‎ </span>
                         <mat-form-field appearance="outline" color="accent">
@@ -37,11 +41,11 @@
                 </mat-list>
             </form>
         </div>
-        <div style="padding: 20px; font-family: sans-serif; max-width: 800px;">
+        <div class = "leitor-container">
             <h2>Leitor de Imagem com Serviço OCR</h2>
             <mat-form-field>
                 <mat-label>Tipo</mat-label>
-                <select matNativeControl [(ngModel)]="tipo">
+                <select matNativeControl [(ngModel)]="tipo" aria-label="Tipo" >
                     <option value="" selected></option>
                     <option value="produto">Produto</option>
                     <option value="servico">Serviço</option>
@@ -50,31 +54,30 @@
             <span> ‎ </span>
             <mat-checkbox [(ngModel)]="stainfo">Imagem com informação</mat-checkbox>
             <span> ‎ </span>
-            <input type="file" accept="image/png, image/jpeg, image/jpg, image/webp" (change)="onFileSelected($event)"
+            <label for="fileUpload"> Selecione: </label>
+            <input type="file" id="fileUpload" accept="image/png, image/jpeg, image/jpg, image/webp" (change)="onFileSelected($event)"
                 [disabled]="carregando()" />
 
             @if (carregando()) {
-            <div style="margin-top: 15px; color: #0056b3;">
+            <div class="loading">
                 <strong>Status:</strong> Processando imagem, por favor aguarde...
             </div>
             }
-            <div style="display: flex; gap: 20px; margin-top: 20px; align-items: flex-start;">
+            <div class="vision">
 
                 @if (imagemPreview()) {
                 <div>
                     <h4>Imagem selecionada:</h4>
-                    <img [src]="imagemPreview()" alt="Preview"
-                        style="max-width: 100%; max-height: 200px; border: 1px solid #ccc; border-radius: 4px;" />
+                    <img class="image" [src]="imagemPreview()" alt="Preview" />
                 </div>
                 }
 
                 @if (textoExtraido()) {
-                <div style="flex: 1; min-width: 800px;">
+                <div class="divresult">
                     <h3>Texto Identificado pelo Serviço:</h3>
-                    <pre
-                        style="min-width: 800px; background: #f8f9fa; padding: 15px; border: 1px solid #e9ecef; border-radius: 5px; white-space: pre-wrap; font-family: monospace;">
-                    {{ textoExtraido() }}
-                </pre>
+                    <pre class="result">
+                      {{ textoExtraido() }}
+                    </pre>
                 </div>
                 }
             </div>
@@ -85,25 +88,25 @@
                     <mat-list-item>
                         <mat-form-field class="tipo-field" appearance="outline">
                             <mat-label>Tipo</mat-label>
-                            <select matNativeControl formControlName="tipo">
+                            <select matNativeControl formControlName="tipo" aria-label="Tipo" >
                                 <option value="produto">Produto</option>
                                 <option value="servico">Serviço</option>
                             </select>
                         </mat-form-field>
         
                         <mat-form-field class="item-field" appearance="outline">
-                            <mat-label>item</mat-label>
-                            <input matInput formControlName="item" />
+                            <mat-label>Item</mat-label>
+                            <input matInput formControlName="item" aria-label="Item" />
                         </mat-form-field>
             
                         <mat-form-field class="informacao-field" appearance="outline">
                             <mat-label>Informação</mat-label>
-                            <input matInput formControlName="informacao" />
+                            <input matInput formControlName="informacao" aria-label="Informação" />
                         </mat-form-field>
        
                         <mat-form-field class="valor-field" appearance="outline">
                             <mat-label>Valor</mat-label>
-                            <input matInput formControlName="valor" />
+                            <input matInput formControlName="valor" aria-label="Valor" />
                         </mat-form-field>
                         <span> ‎ ‎ </span>
                         <button class="btn-speciel" type="button" (click)="onAlter()" [disabled]="form.invalid">
