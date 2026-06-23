@@ -14,7 +14,9 @@ export interface listaatendimento {
   motivo: string,
   valor: string,
   dtaprovacao: string,
-  dtfechamento: string
+  dtfechamento: string,
+  data: string,
+  codigomot: string
 }
 
 export type listaMotivo = {

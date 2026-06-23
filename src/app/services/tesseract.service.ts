@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { environment } from '../../environments/environment';
 import { AESEncryptDecryptService } from '../services/aesencrypt-decrypt.service';
+import { DigitalizarSQL } from '../sql/digitalizar-respository';
 import { resultResponse, listaatendimento, listaMotivo } from '../types/digitalizar-response.type';
 
 declare var Tesseract: any;
@@ -23,15 +24,14 @@ export class TesseractService {
 
   constructor(private http: HttpClient,
     private snackBar: MatSnackBar,
+    private digitoSQL: DigitalizarSQL,
     private crypto: AESEncryptDecryptService) { }
 
-  getDados(): Observable<listaatendimento[]> {
-    const sql = `select o.codigoate, o.seqos, o.ordemexterna, o.placa, m.motivo,
-                        0 as valor, o.dtaprovacao, o.dtfechamento 
-                   from lordserv o
-                  inner join cgmotivo m on m.codigomot = o.codigomot
-                  where 1=0 ` ;
-
+  getDados(): Observable<any> {
+    const sql = this.digitoSQL.getAtendimentoSQL(this.crypto.decrypt(localStorage.getItem('empresa')!),
+                                                 localStorage.getItem('dataInicial')!,
+                                                 localStorage.getItem('dataFinal')!);
+                                   
     return this.http.post<{ result: listaatendimento[] }>(BACKEND_CONSULTA + '/consulta', {
       sql,
       db: this.database
@@ -40,18 +40,14 @@ export class TesseractService {
   }
 
   getMotivo(): Observable<any> {
-    const sql = `select codigomot,motivo from cgmotivo m 
-                  where staativo = 1 and stasac = 'V' 
-                    and motivo not like '%(%'
-                  order by 2`;
-
+    const sql = this.digitoSQL.getmotivoSQL();
     return this.http.post<{ result: listaMotivo[] }>(BACKEND_CONSULTA + '/consulta', {
       sql,
       db: this.database
     })
       .pipe(map(response => response.result)); // Extraindo apenas a propriedade 'result
   }
-  
+
   setRegistro(element: any) {
     this.registroSelecionado = element;
   }
@@ -59,7 +55,7 @@ export class TesseractService {
   getRegistro() {
     return this.registroSelecionado;
   }
- 
+
   async reconhecerTexto(imagem: File | string): Promise<string> {
     const { data: { text } } = await Tesseract.recognize(imagem, 'por');
     return text;
@@ -77,9 +73,10 @@ export class TesseractService {
 
   async gravaManutencao(ordem: string, placa: string, motivo: string, data: string | null,
     tipo: string, item: string, informacao: string, valor: string | null): Promise<resultResponse | null> {
-    const sql: string = `insert into tmp_manutencao(ordem,placa,motivo,data,tipo,item,informacao,valor) 
-                        values ('${ordem}','${placa}','${motivo}','${data}','${tipo}', '${item}','${informacao}','${valor}')`;
+
+    const sql = this.digitoSQL.getinsertSQL(ordem, placa, motivo, data, tipo, item, informacao, valor);
     const resultado = await this.inserir(sql);
+    
     return resultado;
   }
 

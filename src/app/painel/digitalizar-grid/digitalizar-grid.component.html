@@ -1,11 +1,13 @@
 <app-painel>
   <div class="painel">
     <div class="section1">
-      <div class="btn-wrapper">
-        <button class="btn-speciel" (click)="atendimento()">Abrir Atendimento</button>
-        <span> ‎ </span>
-        <button class="btn-speciel" (click)="digitalizar()">Digitalizar</button>
-      </div>
+      <button class="btn-speciel" (click)="onAtendimento()">Abrir Atendimento</button>
+      <span> ‎ ‎ ‎ </span>
+      <button class="btn-speciel" (click)="onDigitalizar()">Digitalizar</button>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="onSearch()">
+        <mat-icon>search</mat-icon>
+      </button>
     </div>
     <div class="section2">
       <div class="table-container">
@@ -35,7 +37,7 @@
           </ng-container>
           <ng-container matColumnDef="valor" class="mat-column-valor">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Valor </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{ element.valor | number:'1.2-2' }} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{ element.valor }} </mat-cell>
           </ng-container>
           <ng-container matColumnDef="dtaprovacao" class="mat-column-dtaprovacao">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Aprovação </mat-header-cell>
@@ -45,7 +47,14 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header> Fechamento </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{ element.dtfechamento }} </mat-cell>
           </ng-container>
+          <ng-container matColumnDef="data" class="mat-column-data">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Data </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.data }} </mat-cell>
+          </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns" class="table-header"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selecionarRegistro(row)"
+                    [class.selected]="row === registroSelecionado">
+                </mat-row>
         </table>
         <mat-paginator [pageSizeOptions]="[50, 20, 10, 5]" showFirstLastButtons></mat-paginator>
       </div>

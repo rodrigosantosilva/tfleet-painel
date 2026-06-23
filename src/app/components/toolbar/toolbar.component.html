@@ -4,6 +4,28 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span class="title"> Olá, {{ primeiroNome }}! </span>
+
+
+    <!-- empresas -->
+<mat-form-field appearance="outline" class="empresa-select">
+  <mat-select [formControl]="empresasForm" multiple (closed)="mudaEmpresa()">
+    <mat-select-trigger>
+      {{empresasForm.value ? retornaNome(empresasForm.value[0]) : retornaNome(empresasForm.value)}}
+      <span *ngIf="empresasForm.value?.length > 1" class="example-additional-selection">
+        (+{{empresasForm.value.length - 1}} outros)
+      </span>
+    </mat-select-trigger>
+
+    <mat-option (click)="selecionarTudo()" [value]="numeroZero">Selecionar tudo</mat-option>
+    <mat-divider></mat-divider>
+    <mat-option *ngFor="let empresa of listaEmpresa | slice:1" [value]="empresa[1]" (click)="deselectAll()">
+      {{ empresa[0] }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+    <!-- fim empresas -->
+
   <span class="spacer"></span>
 
   <button mat-button [matMenuTriggerFor]="apps">

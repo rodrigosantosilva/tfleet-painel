@@ -4,6 +4,9 @@ mat-toolbar {
     padding-left: 0%;
     gap: 20px;
     height: 10%;
+
+      display: flex;
+  align-items: center; /* centraliza verticalmente */
 }
 
 .tfleet {
@@ -92,7 +95,38 @@ img{
 
 .title {
     color: white;    
+      margin-right: 16px; /* espaço entre título e select */
+  font-weight: 500;
 }  
+
+mat-form-field {
+  width: 50%;
+          font-size: 16px;
+          font-weight: 500;
+          color: white;    
+  margin-right: 16px;
+  align-self: baseline; 
+}
+
+
+.mat-form-field {
+  margin: 0; /* remove margens extras */
+}
+.empresa-select {
+  min-width: 220px;
+  margin: 0 12px;
+   color: white;   
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  border-color: #1976d2; /* azul Material */
+}
+
+.mat-select-trigger {
+  font-weight: 500;
+  color: #333;
+}
+
 .spacer {
   flex: 1;
 }

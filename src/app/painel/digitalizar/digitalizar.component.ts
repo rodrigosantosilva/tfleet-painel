@@ -85,7 +85,6 @@ export class DigitalizarComponent implements OnInit {
       this.IncluirRegistro(this.registroSelecionado);
       this.tctService.setRegistro(null);
     }
-
     await this.ListaMotivo();
   }
 

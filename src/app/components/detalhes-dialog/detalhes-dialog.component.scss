@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    margin: auto;
+    height: 80px;
+}
+
+.data-field {
+    width: 200px;
+}
+
+::ng-deep .mat-datepicker-content {
+  background-color: #fff !important; /* fundo branco */
+}
+
+::ng-deep .mat-calendar {
+  background-color: #fff !important; /* corpo do calendário */
+}
+
+::ng-deep .cdk-overlay-pane {
+  background-color: #fff !important;
+}

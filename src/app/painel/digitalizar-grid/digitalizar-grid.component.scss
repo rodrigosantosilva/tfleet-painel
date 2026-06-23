@@ -8,10 +8,18 @@
   width: 100%;
   margin: 0px;
   padding: 5px;
+  display: flex; // ativa flexbox
+  align-items: center; // alinha verticalmente
 }
 
 .spacer {
   flex: 1;
+}
+
+button[mat-icon-button] {
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .heard-container {
@@ -32,12 +40,12 @@
 
 .btn-speciel {
   width: 20%;
-  border-radius: 8px;  
+  border-radius: 8px;
   font-size: 14px;
   background: transparent;
   padding-bottom: 10px;
   height: 50px;
-  background-color: var.$default-color; 
+  background-color: var.$default-color;
   font-weight: bold;
   color: white;
   border: none;
@@ -46,7 +54,7 @@
 
 .btn-speciel:disabled {
   width: 20%;
-  border-radius: 8px;  
+  border-radius: 8px;
   font-size: 14px;
   background: transparent;
   padding-bottom: 10px;
@@ -61,8 +69,7 @@ input {
   text-transform: uppercase;
 }
 
-
-.table-header{
+.table-header {
   background-color: #b0bec5;
   color: black;
 }
@@ -70,5 +77,3 @@ input {
 .mat-column-id {
   flex: 0 0 5%;
 }
-
-

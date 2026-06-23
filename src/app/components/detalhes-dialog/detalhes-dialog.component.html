@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Selecione o período</h2>
+<mat-dialog-content align="center">
+    <span> ‎ ‎ </span>
+    <div class="container">
+        <div class="mat-elevation-z6">
+            <mat-form-field class="data-field" appearance="outline">
+                <mat-label>Data Inicial</mat-label>
+                <!-- #docregion toggle -->
+                <input matInput [matDatepicker]="picker" (input)="formatDate($event)" placeholder="DD/MM/AAAA"
+                    [(ngModel)]="dataInicial">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <!-- #enddocregion toggle -->
+            </mat-form-field>
+            <span> ‎ ‎ </span>
+            <mat-form-field class="data-field" appearance="outline">
+                <mat-label>Data Final</mat-label>
+                <!-- #docregion toggle -->
+                <input matInput [matDatepicker]="picker2" (input)="formatDate($event)" placeholder="DD/MM/AAAA"
+                    [(ngModel)]="dataFinal">
+                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+                <!-- #enddocregion toggle -->
+            </mat-form-field>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()"> Não </button>
+    <button mat-button (click)="onConfirm()" cdkFocusInitial> Sim </button>
+</mat-dialog-actions>
