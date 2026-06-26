@@ -21,6 +21,20 @@
               <mat-form-field class="ordemexterna-field" appearance="outline">
                 <mat-label>Ordem Externa</mat-label>
                 <input matInput formControlName="ordemexterna" aria-label="Ordem Externa" />
+                <mat-error *ngIf="form.get('ordemexterna')?.hasError('ordemInvalida')">
+                  Ordem já registrada na base.
+                </mat-error>               
+              </mat-form-field>
+            </tr>
+            <tr>
+              <mat-form-field class="km-field" appearance="outline">
+                <mat-label>KM</mat-label>
+                <input type="number" matInput formControlName="km" aria-label="KM" />
+              </mat-form-field>
+              <span> ‎ </span>
+              <mat-form-field class="condutor-field" appearance="outline">
+                <mat-label>Condutor</mat-label>
+                <input matInput formControlName="condutor" aria-label="Condutor" />         
               </mat-form-field>
             </tr>
             <tr>

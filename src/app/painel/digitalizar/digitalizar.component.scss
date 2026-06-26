@@ -16,7 +16,11 @@
 
 .heard-container {
   max-height: 80px;
-  
+  width: 100%;
+  display: flex;
+  gap: 12px; /* controla o espaço entre os campos */
+  flex-wrap: wrap; /* evita corte em telas menores */
+  align-items: flex-start;
 }
 
 .table-container {
@@ -26,29 +30,44 @@
 }
 
 .leitor-container {
-   padding: 20px; 
-  font-family: sans-serif; 
+  padding: 20px;
+  font-family: sans-serif;
   max-width: 900px;
 }
 
+
 .loading {
-  margin-top: 15px; color: #0056b3;
+  margin-top: 15px;
+  color: #0056b3;
 }
 
 .vision {
- display: flex; gap: 20px; margin-top: 20px; align-items: flex-start;
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  align-items: flex-start;
 }
 
 .image {
-  max-width: 100%; max-height: 200px; border: 1px solid #ccc; border-radius: 4px;
+  max-width: 100%;
+  max-height: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .divresult {
-  flex: 1; min-width: 800px;
+  flex: 1;
+  min-width: 800px;
 }
 
 .result {
-  min-width: 800px; background: #f8f9fa; padding: 15px; border: 1px solid #e9ecef; border-radius: 5px; white-space: pre-wrap; font-family: monospace;
+  min-width: 800px;
+  background: #f8f9fa;
+  padding: 15px;
+  border: 1px solid #e9ecef;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  font-family: monospace;
 }
 
 .selected {
@@ -59,12 +78,12 @@
 
 .btn-speciel {
   width: 10%;
-  border-radius: 8px;  
+  border-radius: 8px;
   font-size: 14px;
   background: transparent;
   padding-bottom: 10px;
   height: 50px;
-  background-color: var.$default-color; 
+  background-color: var.$default-color;
   font-weight: bold;
   color: white;
   border: none;
@@ -73,7 +92,7 @@
 
 .btn-speciel:disabled {
   width: 10%;
-  border-radius: 8px;  
+  border-radius: 8px;
   font-size: 14px;
   background: transparent;
   padding-bottom: 10px;
@@ -88,23 +107,86 @@ input {
   text-transform: uppercase;
 }
 
-.ordemexterna-field .mat-form-field-flex {
+.ordemexterna-field {
   height: 30px;
-  padding: 0 8px;
-  /* diminui o espaçamento */
+  width: 250px;
 }
 
 .placa-field {
   height: 30px;
   width: 100px;
-  padding: 0 8px;
 }
 
 .motivo-field {
   height: 30px;
   width: 300px;
-  padding: 0 8px;
 }
+
+.data-field {
+  height: 30px;
+  width: 200px;
+}
+
+.placa-field input {
+  text-transform: uppercase;
+}
+
+.ordemexterna-field input {
+  text-transform: uppercase;
+}
+
+.mat-form-field {
+  vertical-align: top;
+}
+
+.mat-select-trigger {
+  min-height: 36px; /* mesma altura do input */
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep .mat-datepicker-content {
+  background-color: #fff !important;
+  /* fundo branco */
+}
+
+::ng-deep .mat-calendar {
+  background-color: #fff !important;
+  /* corpo do calendário */
+}
+
+::ng-deep .cdk-overlay-pane {
+  background-color: #fff !important;
+}
+
+.form-container {
+  width: 100%;
+}
+
+mat-list {
+  flex-direction: column;
+  width: auto;
+  height: auto;
+
+  mat-list-item {
+    margin: 0;
+    min-height: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* alinha verticalmente */
+    justify-content: center;
+    /* alinha horizontalmente */
+    gap: 16px;
+
+    mat-form-field {
+      transform: translateY(1em) scale(1) !important;
+      height: 80px;
+      gap: 8px;
+    }
+  }
+}
+
 
 tipo-field {
   height: 15px;
@@ -130,38 +212,8 @@ tipo-field {
   padding: 0 8px;
 }
 
-.placa-field input {
-  text-transform: uppercase;
-}
 
-.ordemexterna-field input {
-  text-transform: uppercase;
-}
-
-
-mat-list {
-  flex-direction: column;
-  width: auto;
-  height: auto;
-
-  mat-list-item {
-    margin: 0;
-    min-height: 70px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;   /* alinha verticalmente */
-    justify-content: center; /* alinha horizontalmente */
-    gap: 16px;
-
-    mat-form-field {
-      transform: translateY(1em) scale(1) !important;
-      height: 80px;
-      gap: 8px;
-    }
-  }
-}
-
-.table-header{
+.table-header {
   background-color: #b0bec5;
   color: black;
 }
@@ -186,14 +238,3 @@ mat-list {
   width: 15%;
 }
 
-::ng-deep .mat-datepicker-content {
-  background-color: #fff !important; /* fundo branco */
-}
-
-::ng-deep .mat-calendar {
-  background-color: #fff !important; /* corpo do calendário */
-}
-
-::ng-deep .cdk-overlay-pane {
-  background-color: #fff !important;
-}

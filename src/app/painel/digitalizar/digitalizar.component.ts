@@ -11,11 +11,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { debounceTime, switchMap, map, catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
 import { PainelComponent } from '../painel/painel.component';
 import { TesseractService } from '../../services/tesseract.service';
-import { itemmanutencao,listaMotivo } from '../../types/digitalizar-response.type';
+import { itemmanutencao, listaMotivo } from '../../types/digitalizar-response.type';
 
 @Component({
   selector: 'app-digitalizar',
@@ -64,7 +67,7 @@ export class DigitalizarComponent implements OnInit {
     this.manutencaoForm.get('codmotivo')?.setValue(this.registroSelecionado.motivo);
   }
 
-  async ngOnInit(): Promise<void>  {
+  async ngOnInit(): Promise<void> {
 
     this.form = this.fb.group({
       tipo: ['', Validators.required],
@@ -74,7 +77,7 @@ export class DigitalizarComponent implements OnInit {
     });
 
     this.manutencaoForm = this.fb.group({
-      ordemexterna: ['', Validators.required],
+      ordemexterna: ['', Validators.required, [this.validaOrdemAsync.bind(this)]],
       placa: ['', Validators.required],
       codmotivo: ['', Validators.required],
       data: [new Date, Validators.required]
@@ -100,6 +103,33 @@ export class DigitalizarComponent implements OnInit {
         resolve();  // sinaliza que terminou
       });
     });
+  }
+
+  validaOrdemAsync(control: AbstractControl): Observable<ValidationErrors | null> {
+    if (!control.value) {
+      return of(null);
+    }
+
+    return of(control.value).pipe(
+      debounceTime(1000), // espera 500ms após digitação
+      switchMap(value =>
+        this.tctService.validaOrdem(value).pipe(
+          map((res: any[]) => {
+            let retorno: string | null = null;
+            for (const item of res) {
+              retorno = item[0]
+            }
+            if (retorno == null) {
+              return { ordemInvalida: true };
+            }
+            return null;
+          }),
+          catchError(err => {
+            return of({ ordemInvalida: true });
+          })
+        )
+      )
+    );
   }
 
   async onFileSelected(event: Event) {

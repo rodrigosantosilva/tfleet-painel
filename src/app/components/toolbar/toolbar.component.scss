@@ -1,130 +1,161 @@
-@use  "../../../styles/variables.scss" as var;
+@use "../../../styles/variables.scss" as var;
 
 mat-toolbar {
-    padding-left: 0%;
-    gap: 20px;
-    height: 10%;
+  padding-left: 0%;
+  gap: 20px;
+  height: 10%;
 
-      display: flex;
-  align-items: center; /* centraliza verticalmente */
+  display: flex;
+  align-items: center;
+  /* centraliza verticalmente */
 }
 
+
 .tfleet {
-    background-color: var.$tfleet-color;
+  background-color: var.$tfleet-color;
+
+
 }
 
 .csn {
-    background-color: var.$csn-color;
+  background-color: var.$csn-color;
 }
 
 .vale {
-    background-color: var.$vale-color;
+  background-color: var.$vale-color;
 }
 
 .alelo {
-    background-color: var.$alelo-color;
+  background-color: var.$alelo-color;
 }
 
 .petropolis {
-    background-color: var.$petropolis-color;
+  background-color: var.$petropolis-color;
 }
 
 .tfleetLogo {
-    width: 13%;
-    height: 100%;
-    background-image: url("../../../assets/img/auto_logo_branca.png");
-    background-position: left;
-    background-repeat: no-repeat;
-    background-size: auto;
+  width: 13%;
+  height: 100%;
+  background-image: url("../../../assets/img/auto_logo_branca.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: auto;
 }
 
 .csnLogo {
-    width: 13%;
-    height: 100%;
-    background-image: url("../../../assets/img/auto_logo_branca.png");
-    background-position: left;
-    background-repeat: no-repeat;
-    background-size: auto;
-}
-.valeLogo {
-    width: 13%;
-    height: 100%;
-    background-image: url("../../../assets/img/auto_logo_branca.png");
-    background-position: left;
-    background-repeat: no-repeat;
-    background-size: auto;
-}
-.petropolisLogo {
-    width: 13%;
-    height: 100%;
-    background-image: url("../../../assets/img/auto_logo_branca.png");
-    background-position: left;
-    background-repeat: no-repeat;
-    background-size: auto;
-}
-.aleloLogo {
-    width: 13%;
-    height: 100%;
-    background-image: url("../../../assets/img/logo-alelo.png");
-    background-position: left;
-    background-repeat: no-repeat;
-    background-size: contain;
+  width: 13%;
+  height: 100%;
+  background-image: url("../../../assets/img/auto_logo_branca.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: auto;
 }
 
+.valeLogo {
+  width: 13%;
+  height: 100%;
+  background-image: url("../../../assets/img/auto_logo_branca.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.petropolisLogo {
+  width: 13%;
+  height: 100%;
+  background-image: url("../../../assets/img/auto_logo_branca.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.aleloLogo {
+  width: 13%;
+  height: 100%;
+  background-image: url("../../../assets/img/logo-alelo.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 
 mat-icon {
   color: white;
 }
 
 .logo {
-  color:white;
+  color: white;
   height: 100%;
   width: 22.8%;
 }
 
-img{
+img {
   width: 80%;
   height: 100%;
   align-content: center;
-  
+
   background-position: left;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
-
 .title {
-    color: white;    
-      margin-right: 16px; /* espaço entre título e select */
+  color: white;
+  margin-right: 16px;
   font-weight: 500;
-}  
+  display: flex;
+  align-items: center; /* força o span a alinhar com o select */
+ 
+}
 
 mat-form-field {
   width: 50%;
-          font-size: 16px;
-          font-weight: 500;
-          color: white;    
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
   margin-right: 16px;
-  align-self: baseline; 
+  align-self: baseline;
+  margin: 0;
 }
 
-
-.mat-form-field {
-  margin: 0; /* remove margens extras */
-}
 .empresa-select {
   min-width: 220px;
   margin: 0 12px;
-   color: white;   
+  color: white;
 }
 
-.mat-form-field-appearance-outline .mat-form-field-outline {
-  border-color: #1976d2; /* azul Material */
+mat-form-field.empresa-select {
+  min-height: 25px; /* controla altura mínima */
+  line-height: 25px; /* alinha o texto dentro */
 }
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  stroke-width: 1px; /* controla a espessura da linha */
+  border-color: #1976d2; /* sua cor azul */
+  stroke-width: 1px;     /* mais fino */  
+  background-color: #fff !important; /* fundo branco */
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  stroke-width: 1px; /* reduz a borda quando o campo está focado */
+  border-color: #1976d2;
+  stroke-width: 1px;  
+  background-color: #fff !important; /* fundo branco */
+}
+
+.mat-form-field-wrapper {
+  margin: 0; /* remove margens extras */
+  padding-bottom: 0; /* evita “afundar” o campo */
+  height: 30px; /* força altura */
+  background-color: #fff !important; /* fundo branco */
+}
+
 
 .mat-select-trigger {
+  height: 25px; /* mesma altura da borda */
+  display: flex;
+  align-items: center; /* centraliza verticalmente */  
   font-weight: 500;
   color: #333;
+  background-color: #fff !important; /* fundo branco */
 }
 
 .spacer {

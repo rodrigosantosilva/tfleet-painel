@@ -33,12 +33,24 @@ export class DigitalizarSQL {
                   order by 2 `;
     }
 
+    getExternoSQL(ordem: string): string {
+        return `select max(codigoate) id from loatende
+                  where infdtagendamento =  '${ordem}'  `;
+    }
+
 
     getinsertSQL(ordem: string, placa: string, motivo: string, data: string | null,
         tipo: string, item: string, informacao: string, valor: string | null): string {
         return `insert into tmp_manutencao(ordem,placa,motivo,data,tipo,item,informacao,valor) 
                         values ('${ordem}','${placa}','${motivo}','${data}','${tipo}', '${item}','${informacao}','${valor}')`;
     }
+
+    getAtendeSQL(ordem: string, placa: string, km: string, condutor: string, motivo: string, data: string | null,
+        entrada: string | null, servico: string | null, realizado: string): string {
+        return `insert into tmp_matende(ordem,placa,km,condutor,motivo,data,entrada,servico,realizado) 
+                        values ('${ordem}','${placa}','${km}','${condutor}','${motivo}','${data}','${entrada}', '${servico}','${realizado}')`;
+    }
+
 
 
 }  

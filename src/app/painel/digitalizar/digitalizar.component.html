@@ -3,49 +3,46 @@
         <p> Geração de Ordem de serviço</p>
         <div class="heard-container">
             <form [formGroup]="manutencaoForm" (ngSubmit)="onManutencao()">
-                <mat-list>
-                    <mat-list-item>
-                        <mat-form-field class="ordemexterna-field" appearance="outline">
-                            <mat-label>Ordem Externa</mat-label>
-                            <input matInput formControlName="ordemexterna" aria-label="Ordem Externa" />
-                        </mat-form-field>
-                        <span> ‎ </span>
-                        <mat-form-field class="placa-field" appearance="outline">
-                            <mat-label>Placa</mat-label>
-                            <input matInput formControlName="placa" aria-label="placa" />
-                        </mat-form-field>
-                        <span> ‎ </span>
-                        <mat-form-field class="motivo-field" appearance="outline">
-                            <mat-label>Item</mat-label>
-                            <mat-select formControlName="codmotivo">
-                            @for (item of dataMotivo; track item) {
-                            <mat-option [value]="item.codigomot">{{item.motivo}}</mat-option>
-                            }
-                            </mat-select>
-                        </mat-form-field>
-                        <span> ‎ </span>
-                        <mat-form-field appearance="outline" color="accent">
-                            <mat-label>Data</mat-label>
-                            <input matInput [matDatepicker]="picker" 
-                                            (input)="formatDate($event,'data')" 
-                                            placeholder="DD/MM/AAAA" 
-                                            formControlName="data">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </mat-form-field>
-                        <span> ‎ ‎ </span>
-                        <button class="btn-speciel" type="submit" [disabled]="manutencaoForm.invalid">
-                            Importar Dados
-                        </button>
-                    </mat-list-item>
-                </mat-list>
+                <mat-form-field class="ordemexterna-field" appearance="outline">
+                    <mat-label>Ordem Externa</mat-label>
+                    <input matInput formControlName="ordemexterna" aria-label="Ordem Externa" />
+                    <mat-error *ngIf="manutencaoForm.get('ordemexterna')?.hasError('ordemInvalida')">
+                        Não existe atendimento.
+                    </mat-error>
+                </mat-form-field>
+                <span> ‎ </span>
+                <mat-form-field class="placa-field" appearance="outline">
+                    <mat-label>Placa</mat-label>
+                    <input matInput formControlName="placa" aria-label="placa" />
+                </mat-form-field>
+                <span> ‎ </span>
+                <mat-form-field class="motivo-field" appearance="outline">
+                    <mat-label>Item</mat-label>
+                    <mat-select formControlName="codmotivo">
+                        @for (item of dataMotivo; track item) {
+                        <mat-option [value]="item.codigomot">{{item.motivo}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+                <span> ‎ </span>
+                <mat-form-field class="data-field" appearance="outline" color="accent">
+                    <mat-label>Data</mat-label>
+                    <input matInput [matDatepicker]="picker" (input)="formatDate($event,'data')"
+                        placeholder="DD/MM/AAAA" formControlName="data">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <span> ‎ </span>
+                <button class="btn-speciel" type="submit" [disabled]="manutencaoForm.invalid">
+                    Importar Dados
+                </button>
             </form>
         </div>
-        <div class = "leitor-container">
+        <div class="leitor-container">
             <h2>Leitor de Imagem com Serviço OCR</h2>
             <mat-form-field>
                 <mat-label>Tipo</mat-label>
-                <select matNativeControl [(ngModel)]="tipo" aria-label="Tipo" >
+                <select matNativeControl [(ngModel)]="tipo" aria-label="Tipo">
                     <option value="" selected></option>
                     <option value="produto">Produto</option>
                     <option value="servico">Serviço</option>
@@ -54,10 +51,9 @@
             <span> ‎ </span>
             <mat-checkbox [(ngModel)]="stainfo">Imagem com informação</mat-checkbox>
             <span> ‎ </span>
-            <label for="fileUpload"> Selecione: </label>
-            <input type="file" id="fileUpload" accept="image/png, image/jpeg, image/jpg, image/webp" (change)="onFileSelected($event)"
-                [disabled]="carregando()" />
-
+            <label for="fileUpload"> ‎ </label>
+            <input type="file" id="fileUpload" accept="image/png, image/jpeg, image/jpg, image/webp"
+                (change)="onFileSelected($event)" [disabled]="carregando()" />
             @if (carregando()) {
             <div class="loading">
                 <strong>Status:</strong> Processando imagem, por favor aguarde...
@@ -83,27 +79,27 @@
             </div>
         </div>
         <div class="heard-container">
-            <form [formGroup]="form" (ngSubmit)="onItem()">
+            <form class="form-container" [formGroup]="form" (ngSubmit)="onItem()">
                 <mat-list>
                     <mat-list-item>
                         <mat-form-field class="tipo-field" appearance="outline">
                             <mat-label>Tipo</mat-label>
-                            <select matNativeControl formControlName="tipo" aria-label="Tipo" >
+                            <select matNativeControl formControlName="tipo" aria-label="Tipo">
                                 <option value="produto">Produto</option>
                                 <option value="servico">Serviço</option>
                             </select>
                         </mat-form-field>
-        
+
                         <mat-form-field class="item-field" appearance="outline">
                             <mat-label>Item</mat-label>
                             <input matInput formControlName="item" aria-label="Item" />
                         </mat-form-field>
-            
+
                         <mat-form-field class="informacao-field" appearance="outline">
                             <mat-label>Informação</mat-label>
                             <input matInput formControlName="informacao" aria-label="Informação" />
                         </mat-form-field>
-       
+
                         <mat-form-field class="valor-field" appearance="outline">
                             <mat-label>Valor</mat-label>
                             <input matInput formControlName="valor" aria-label="Valor" />
@@ -119,7 +115,7 @@
                         <span> ‎ </span>
                         <button class="btn-speciel" type="submit" [disabled]="form.invalid">
                             Adicionar
-                        </button>                    
+                        </button>
                     </mat-list-item>
                 </mat-list>
             </form>

@@ -11,11 +11,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ToastrService } from 'ngx-toastr';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { debounceTime, switchMap, map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { PainelComponent } from '../painel/painel.component';
 import { TesseractService } from '../../services/tesseract.service';
-import { listaatendimento,listaMotivo } from '../../types/digitalizar-response.type';
+import { listaatendimento, listaMotivo } from '../../types/digitalizar-response.type';
 
 
 @Component({
@@ -30,6 +33,8 @@ export class DigitalizarTelaComponent implements OnInit {
   form!: FormGroup;
   registro: any;
   dataMotivo: listaMotivo[] = [];
+  dataformadada: string | null = '';
+  entradaformadada: string | null = '';
 
   constructor(private tctService: TesseractService,
     private fb: FormBuilder,
@@ -39,14 +44,16 @@ export class DigitalizarTelaComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.form = this.fb.group({
       placa: ['', Validators.required],
-      ordemexterna: ['', Validators.required],
+      ordemexterna: ['', Validators.required, [this.validaOrdemAsync.bind(this)]],
+      km: ['', Validators.required],
+      condutor: [''],
       codmotivo: ['', Validators.required],
       servico: [''],
       realizados: ['', Validators.required],
       abertura: ['', Validators.required],
       entrada: ['']
     });
-    
+
     await this.ListaMotivo();
   }
 
@@ -64,13 +71,62 @@ export class DigitalizarTelaComponent implements OnInit {
     });
   }
 
-  onSalvar() {
+  validaOrdemAsync(control: AbstractControl): Observable<ValidationErrors | null> {
+    if (!control.value) {
+      return of(null);
+    }
+
+    return of(control.value).pipe(
+      debounceTime(500), // espera 500ms após digitação
+      switchMap(value =>
+        this.tctService.validaOrdem(value).pipe(
+          map((res: any[]) => {
+            return res[0] > 0 ? { ordemInvalida: true } : null;
+          }),
+          catchError(err => {
+            return of({ ordemInvalida: false });
+          })
+        )
+      )
+    );
+  }
+
+  formatarData(formdata: any): string | null {
+    if (!formdata) {
+      return '';
+    }
+    const data = new Date(formdata);
+    return data.toLocaleDateString('pt-BR'); // já retorna dd/MM/yyyy
+  }
+
+  async onSalvar() {
+    this.dataformadada = this.formatarData(this.form.value.abertura);
+    this.entradaformadada = this.formatarData(this.form.value.entrada);
+
+    const result = await this.tctService.gravaAtendimento(
+            this.form.value.ordemexterna.toUpperCase(),
+            this.form.value.placa.toUpperCase(),
+            this.form.value.km,
+            this.form.value.condutor.toUpperCase(),     
+            this.form.value.codmotivo.toUpperCase(),
+            this.dataformadada,
+            this.entradaformadada,
+            this.form.value.servico.toUpperCase(),
+            this.form.value.realizados.toUpperCase()
+          );
+    if (result) {
+      this.tctService.mostrarMensagem("Registro inserido com Sucesso.");
+      this.toastr.success("Registro inserido com Sucesso.");
+    } else {
+      this.toastr.error("Falha na inserção");
+    }
+
     this.registro = {
       ordemexterna: this.form.value.ordemexterna.toUpperCase(),
       placa: this.form.value.placa.toUpperCase(),
       motivo: this.form.value.codmotivo
     }
-    this.tctService.setRegistro(this.registro);   
+    this.tctService.setRegistro(this.registro);
     this.router.navigate(["digitalizar"]);
   }
 

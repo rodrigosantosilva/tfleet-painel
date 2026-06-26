@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
       dataFinal.setHours(0);
       dataFinal.setSeconds(0);
       dataFinal.setMilliseconds(0);
-      dataInicial.setDate(dataFinal.getDate() - 365);
+      dataInicial.setDate(dataFinal.getDate() - 30);
 
       localStorage.setItem('dataInicial', format(dataInicial, 'dd/MM/yyyy'));
       localStorage.setItem('dataFinal', format(dataFinal, 'dd/MM/yyyy'));
@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit {
       dataFinal.setHours(0);
       dataFinal.setSeconds(0);
       dataFinal.setMilliseconds(0);
-      dataInicial.setDate(dataFinal.getDate() - 365);
+      dataInicial.setDate(dataFinal.getDate() - 30);
 
       localStorage.setItem('dataInicial', format(dataInicial, 'dd/MM/yyyy'));
       localStorage.setItem('dataFinal', format(dataFinal, 'dd/MM/yyyy'));

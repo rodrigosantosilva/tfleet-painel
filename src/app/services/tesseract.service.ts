@@ -48,6 +48,16 @@ export class TesseractService {
       .pipe(map(response => response.result)); // Extraindo apenas a propriedade 'result
   }
 
+  validaOrdem(ordem: string): Observable<any> {
+    const sql = this.digitoSQL.getExternoSQL(ordem);
+    return this.http.post<{ result: resultResponse[] }>(BACKEND_CONSULTA + '/consulta', {
+      sql,
+      db: this.database
+    })
+      .pipe(map(response => response.result)); // Extraindo apenas a propriedade 'result
+  }
+
+
   setRegistro(element: any) {
     this.registroSelecionado = element;
   }
@@ -75,6 +85,15 @@ export class TesseractService {
     tipo: string, item: string, informacao: string, valor: string | null): Promise<resultResponse | null> {
 
     const sql = this.digitoSQL.getinsertSQL(ordem, placa, motivo, data, tipo, item, informacao, valor);
+    const resultado = await this.inserir(sql);
+    
+    return resultado;
+  }
+
+  async gravaAtendimento(ordem: string, placa: string, km: string, condutor: string, motivo: string, data: string | null, entrada: string | null,
+    servico: string, realizado: string): Promise<resultResponse | null> {
+
+    const sql = this.digitoSQL.getAtendeSQL(ordem, placa, km, condutor, motivo, data, entrada, servico, realizado);
     const resultado = await this.inserir(sql);
     
     return resultado;

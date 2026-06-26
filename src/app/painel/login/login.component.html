@@ -28,7 +28,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <button mat-raised-button color="primary" [disabled]="loginForm.invalid || logging">
+                <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || logging">
                     <span *ngIf="!logging">Entrar</span>
                     <span *ngIf="logging">Entrando...</span>
                 </button>
